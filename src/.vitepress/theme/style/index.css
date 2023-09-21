@@ -1,0 +1,12 @@
+:root {
+    --vp-c-brand-1: #f44a02;
+    --vp-c-brand-1-light: #f15d1d;
+    --vp-c-brand-2: #f44a02;
+    --vp-c-brand-2-light: #f15d1d;
+    --vp-c-brand-3: #f44a02;
+    --vp-c-brand-3-light: #f15d1d;
+
+    --content-width: 940px;
+    --homepage-width: 960px;
+}
+

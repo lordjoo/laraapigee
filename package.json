@@ -1,0 +1,11 @@
+{
+    "name": "laraapigee-docs",
+    "scripts": {
+        "docs:dev": "vitepress dev src",
+        "docs:build": "vitepress build src --outDir docs",
+        "docs:preview": "vitepress preview src"
+    },
+    "devDependencies": {
+        "vitepress": "^1.0.0-rc.14"
+    }
+}
