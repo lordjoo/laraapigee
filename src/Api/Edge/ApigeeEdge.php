@@ -4,7 +4,6 @@ namespace Lordjoo\Apigee\Api\Edge;
 
 use Illuminate\Http\Client\PendingRequest;
 use Lordjoo\Apigee\Apigee;
-use Lordjoo\Apigee\Edge;
 
 class ApigeeEdge
 {

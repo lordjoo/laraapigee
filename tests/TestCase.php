@@ -2,7 +2,7 @@
 
 namespace Lordjoo\Apigee\Tests;
 
-use Lordjoo\Apigee\ApigeeServiceProvider;
+use Lordjoo\Apigee\LaravelApigeeServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -15,7 +15,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            ApigeeServiceProvider::class,
+            LaravelApigeeServiceProvider::class
         ];
     }
 
