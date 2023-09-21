@@ -1,6 +1,6 @@
-../laravel-apigee/docs/node_modules
+node_modules
 yarn.lock
 package.lock.json
 src/.vitepress/dist
 src/.vitepress/cache
-
+.idea
