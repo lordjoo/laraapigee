@@ -13,14 +13,21 @@ class Monetization
 {
     use MakesHttpRequests;
 
+    protected string $endpoint;
+    protected string $username;
+    protected string $password;
+    protected string $organization;
+
     protected ?PendingRequest $httpClient = null;
 
-    public function __construct(
-        protected string $endpoint,
-        protected string $username,
-        protected string $password,
-        protected string $organization
-    ) {
+    public function __construct() {
+        $configDriver = config('apigee.driver');
+        $config = new $configDriver();
+        $this->endpoint = $config->getMonetizationEndpoint();
+        $this->username = $config->getUserName();
+        $this->password = $config->getPassword();
+        $this->organization = $config->getOrganization();
+        $this->httpClient = $this->httpClient();
     }
 
     public function httpClient(): PendingRequest

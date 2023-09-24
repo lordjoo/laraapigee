@@ -12,7 +12,8 @@ class Factory
             config('apigee.endpoint'),
             config('apigee.username'),
             config('apigee.password'),
-            config('apigee.organization')
+            config('apigee.organization'),
+            config('apigee.monetization.enabled')
         );
     }
 
@@ -22,7 +23,8 @@ class Factory
             $driver->getEndpoint(),
             $driver->getUserName(),
             $driver->getPassword(),
-            $driver->getOrganization()
+            $driver->getOrganization(),
+            $driver->getMonetizationEnabled()
         );
     }
 }

@@ -2,10 +2,11 @@
 
 namespace Lordjoo\Apigee\Api\Edge\Entities;
 
+use Lordjoo\Apigee\Abstract\Entity;
 use Lordjoo\Apigee\Api\Edge\Entities\Properties\AppPropertiesAware;
 use Lordjoo\Apigee\Api\Edge\Entities\Properties\AttributePropertyAware;
 
-class CompanyApp extends \Lordjoo\Apigee\Abstract\Entity
+class CompanyApp extends Entity
 {
     use AppPropertiesAware,
         AttributePropertyAware;

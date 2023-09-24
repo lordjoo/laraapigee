@@ -3,11 +3,13 @@
 namespace Lordjoo\Apigee\Api\Edge\Services;
 
 use Illuminate\Support\Collection;
+use InvalidArgumentException;
+use Lordjoo\Apigee\Abstract\Service;
 use Lordjoo\Apigee\Api\Edge\Entities\CompanyApp;
 use Lordjoo\Apigee\Exceptions\ValidationException;
 use Lordjoo\Apigee\Services\Validator;
 
-class CompanyAppService extends \Lordjoo\Apigee\Abstract\Service
+class CompanyAppService extends Service
 {
     protected string $companyName;
 
@@ -24,23 +26,23 @@ class CompanyAppService extends \Lordjoo\Apigee\Abstract\Service
      */
     public function get(): Collection
     {
-        $response = $this->client->get('companies/'.$this->companyName.'/apps', [
+        $response = $this->client->get('companies/' . $this->companyName . '/apps', [
             'expand' => 'true',
         ])->json();
 
         return collect($response['app'])->map(function ($app) {
-            return new \Lordjoo\Apigee\Api\Edge\Entities\CompanyApp($app);
+            return new CompanyApp($app);
         });
     }
 
     /**
      * Create a new Company App
      *
-     * @param  array  $data refer to https://apidocs.apigee.com/docs/company-apps/1/types/CompanyAppRequest
+     * @param array $data refer to https://apidocs.apigee.com/docs/company-apps/1/types/CompanyAppRequest
      */
     public function create(array $data): CompanyApp
     {
-        $response = $this->client->post('companies/'.$this->companyName.'/apps', $data)->json();
+        $response = $this->client->post('companies/' . $this->companyName . '/apps', $data)->json();
 
         return new CompanyApp($response);
     }
@@ -48,13 +50,13 @@ class CompanyAppService extends \Lordjoo\Apigee\Abstract\Service
     /**
      * Update a Company App
      *
-     * @param  array  $data refer to https://apidocs.apigee.com/docs/company-apps/1/types/CompanyAppRequest
+     * @param array $data refer to https://apidocs.apigee.com/docs/company-apps/1/types/CompanyAppRequest
      */
     public function update(string $appName, array $data): CompanyApp
     {
-        $response = $this->client->put('companies/'.$this->companyName.'/apps/'.$appName, $data)->json();
+        $response = $this->client->put('companies/' . $this->companyName . '/apps/' . $appName, $data)->json();
 
-        return new \Lordjoo\Apigee\Api\Edge\Entities\CompanyApp($response);
+        return new CompanyApp($response);
     }
 
     /**
@@ -62,21 +64,21 @@ class CompanyAppService extends \Lordjoo\Apigee\Abstract\Service
      */
     public function delete(string $appName): void
     {
-        $this->client->delete('companies/'.$this->companyName.'/apps/'.$appName);
+        $this->client->delete('companies/' . $this->companyName . '/apps/' . $appName);
     }
 
     /**
      * Update the status of a Company App
      *
-     * @param  string  $status either "approve" or "revoke"
+     * @param string $status either "approve" or "revoke"
      */
     public function updateStatus(string $appName, string $status): void
     {
-        if (! in_array($status, ['approve', 'revoke'])) {
-            throw new \InvalidArgumentException('Status must be either "approved" or "revoked"');
+        if (!in_array($status, ['approve', 'revoke'])) {
+            throw new InvalidArgumentException('Status must be either "approved" or "revoked"');
         }
         $this->client->post(
-            url: 'companies/'.$this->companyName.'/apps/'.$appName.'?action='.$status,
+            url: 'companies/' . $this->companyName . '/apps/' . $appName . '?action=' . $status,
             headers: [
                 'Content-Type' => 'application/octet-stream',
             ]

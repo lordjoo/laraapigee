@@ -11,4 +11,8 @@ interface ConfigReaderInterface
     public function getUserName(): string;
 
     public function getPassword(): string;
+
+    public function getMonetizationEnabled(): bool;
+
+    public function getMonetizationEndpoint(): string;
 }

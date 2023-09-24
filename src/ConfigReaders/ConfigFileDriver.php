@@ -23,4 +23,14 @@ class ConfigFileDriver implements ConfigReaderInterface
     {
         return config('apigee.password');
     }
+
+    public function getMonetizationEnabled(): bool
+    {
+        return config('apigee.monetization.enabled', false);
+    }
+
+    public function getMonetizationEndpoint(): string
+    {
+        return config('apigee.monetization.endpoint', '');
+    }
 }

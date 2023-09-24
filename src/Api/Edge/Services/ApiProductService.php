@@ -11,9 +11,21 @@ use Lordjoo\Apigee\Exceptions\ValidationException;
 class ApiProductService extends Service
 {
     /**
+     * Find an API product by name.
+     */
+    public function find(string $name): ApiProduct
+    {
+        $response = $this->client->get('apiproducts/' . $name, [
+            'expand' => 'true',
+        ])->json();
+
+        return new ApiProduct($response);
+    }
+
+    /**
      * Returns a list of all API products in the organization.
      *
-     * @return Collection<\Lordjoo\Apigee\Api\Edge\Entities\ApiProduct>
+     * @return Collection<ApiProduct>
      */
     public function get(): Collection
     {
@@ -27,21 +39,9 @@ class ApiProductService extends Service
     }
 
     /**
-     * Find an API product by name.
-     */
-    public function find(string $name): ApiProduct
-    {
-        $response = $this->client->get('apiproducts/'.$name, [
-            'expand' => 'true',
-        ])->json();
-
-        return new \Lordjoo\Apigee\Api\Edge\Entities\ApiProduct($response);
-    }
-
-    /**
      * Create a new API product.
      *
-     * @param  array  $data refer to https://apidocs.apigee.com/docs/api-products/1/types/APIProductRequest
+     * @param array $data refer to https://apidocs.apigee.com/docs/api-products/1/types/APIProductRequest
      *
      * @throws ValidationException
      */
@@ -50,30 +50,7 @@ class ApiProductService extends Service
         $this->validateData($data);
         $response = $this->client->post('apiproducts', $data)->json();
 
-        return new \Lordjoo\Apigee\Api\Edge\Entities\ApiProduct($response);
-    }
-
-    /**
-     * Update an existing API product.
-     *
-     * @param  array  $data refer to https://apidocs.apigee.com/docs/api-products/1/types/APIProductRequest
-     *
-     * @throws ValidationException
-     */
-    public function update(string $name, array $data): ApiProduct
-    {
-        $this->validateData($data);
-        $response = $this->client->put('apiproducts/'.$name, $data)->json();
-
-        return new \Lordjoo\Apigee\Api\Edge\Entities\ApiProduct($response);
-    }
-
-    /**
-     * Delete an API product.
-     */
-    public function delete(string $name): void
-    {
-        $this->client->delete('apiproducts/'.$name);
+        return new ApiProduct($response);
     }
 
     protected function validateData(array $data): void
@@ -102,5 +79,28 @@ class ApiProductService extends Service
             throw new ValidationException($validator->errors()->toArray());
         }
 
+    }
+
+    /**
+     * Update an existing API product.
+     *
+     * @param array $data refer to https://apidocs.apigee.com/docs/api-products/1/types/APIProductRequest
+     *
+     * @throws ValidationException
+     */
+    public function update(string $name, array $data): ApiProduct
+    {
+        $this->validateData($data);
+        $response = $this->client->put('apiproducts/' . $name, $data)->json();
+
+        return new ApiProduct($response);
+    }
+
+    /**
+     * Delete an API product.
+     */
+    public function delete(string $name): void
+    {
+        $this->client->delete('apiproducts/' . $name);
     }
 }

@@ -3,13 +3,15 @@
 namespace Lordjoo\Apigee\Api\Edge\Services;
 
 use Illuminate\Support\Collection;
+use Lordjoo\Apigee\Abstract\Service;
+use Lordjoo\Apigee\Api\Edge\Entities\ApiProxy;
 
-class ApiProxyService extends \Lordjoo\Apigee\Abstract\Service
+class ApiProxyService extends Service
 {
     /**
      * Returns a list of all API proxies in the organization.
      *
-     * @return Collection<\Lordjoo\Apigee\Api\Edge\Entities\ApiProxy>
+     * @return Collection<ApiProxy>
      */
     public function get(): Collection
     {
@@ -18,7 +20,7 @@ class ApiProxyService extends \Lordjoo\Apigee\Abstract\Service
         ])->json();
 
         return collect($response)->map(function ($proxy) {
-            return new \Lordjoo\Apigee\Api\Edge\Entities\ApiProxy($proxy);
+            return new ApiProxy($proxy);
         });
     }
 }

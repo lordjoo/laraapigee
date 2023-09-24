@@ -53,4 +53,18 @@ class ConfigDBDriver implements ConfigReaderInterface
 
         return $this->data[$col];
     }
+
+    public function getMonetizationEnabled(): bool
+    {
+        $col = config('apigee.db.columns.monetization.enabled');
+
+        return $this->data[$col];
+    }
+
+    public function getMonetizationEndpoint(): string
+    {
+        $col = config('apigee.db.columns.monetization.endpoint');
+
+        return $this->data[$col];
+    }
 }

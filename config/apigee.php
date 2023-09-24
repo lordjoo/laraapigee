@@ -36,6 +36,16 @@ return [
      */
     'password' => env('APIGEE_PASSWORD', 'default'),
 
+    /*
+     * The monetization endpoint which we will use in the API calls
+     *
+     * NOTE: if you are using the ConfigFileDriver, you should set the monetization endpoint in the config file
+     */
+    'monetization' => [
+        'enabled' => env('APIGEE_MONETIZATION_ENABLED', false),
+        'endpoint' => env('APIGEE_MONETIZATION_ENDPOINT', 'https://api.enterprise.apigee.com/v1/mint/organizations'),
+    ],
+
     // Only When using the ConfigDBDriver you should set the following values
     'db' => [
         'table_name' => 'apigee_config',
@@ -44,6 +54,10 @@ return [
             'endpoint' => 'endpoint',
             'username' => 'username',
             'password' => 'password',
+            'monetization' => [
+                'enabled' => 'monetization_enabled',
+                'endpoint' => 'monetization_endpoint',
+            ],
         ],
     ],
 ];
