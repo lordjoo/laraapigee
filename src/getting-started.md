@@ -35,6 +35,10 @@ This driver will load the configuration from the `config/apigee.php` file, which
 'organization' => env('APIGEE_ORGANIZATION', 'default'),
 'username' => env('APIGEE_USERNAME', 'default'),
 'password' => env('APIGEE_PASSWORD', 'default'),
+'monetization' => [
+    'enabled' => env('APIGEE_MONETIZATION_ENABLED', false),
+    'endpoint' => env('APIGEE_MONETIZATION_ENDPOINT', 'https://api.enterprise.apigee.com/v1/mint/organizations'),
+]
 ```
 
 ### DB Driver
@@ -47,6 +51,11 @@ This driver will load the configuration from the database, if you want to use th
         'endpoint' => 'endpoint',
         'username' => 'username',
         'password' => 'password',
+        'monetization' => [
+            'enabled' => 'monetization_enabled',
+            'endpoint' => 'monetization_endpoint',
+        ],
+
     ],
 ],
 ```
