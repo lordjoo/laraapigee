@@ -2,8 +2,8 @@
     "name": "laraapigee-docs",
     "scripts": {
         "docs:dev": "vitepress dev src",
-        "docs:build": "vitepress build src --outDir docs",
-        "docs:preview": "vitepress preview src"
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs"
     },
     "devDependencies": {
         "vitepress": "^1.0.0-rc.14"
