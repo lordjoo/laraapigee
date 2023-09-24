@@ -1,4 +1,4 @@
-<img src="https://lordjoo.github.io/laraapigee/logo.svg" alt="LaraApigee" style="max-width: 350px" >
+<img src="https://lordjoo.github.io/laraapigee/logo.svg" alt="LaraApigee" width="350px" >
 
 
 # Lara Apigee API Client
