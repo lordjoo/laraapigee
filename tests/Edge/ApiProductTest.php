@@ -6,8 +6,8 @@ use Lordjoo\Apigee\Api\Edge\Entities\ApiProduct;
 it('can create fetch all api products', function () {
     $client = $this->app->make(\Lordjoo\Apigee\Apigee::class)->edge();
     $products = $client->apiProduct()->get();
-    expect($products)->toBeInstanceOf(Collection::class);
-    expect($products->first())->toBeInstanceOf(ApiProduct::class);
+    expect($products)->toBeInstanceOf(Collection::class)
+        ->and($products->first())->toBeInstanceOf(ApiProduct::class);
 });
 
 it('can create an API product', function () {

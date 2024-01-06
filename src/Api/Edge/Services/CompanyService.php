@@ -5,7 +5,7 @@ namespace Lordjoo\Apigee\Api\Edge\Services;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
-use Lordjoo\Apigee\Abstract\Service;
+use Lordjoo\Apigee\Abstract\Edge\Service;
 use Lordjoo\Apigee\Api\Edge\Entities\Company;
 use Lordjoo\Apigee\Exceptions\ValidationException;
 

@@ -4,18 +4,13 @@ namespace Lordjoo\Apigee\Abstract;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Lordjoo\Apigee\Api\Edge\ApigeeEdge;
-use Lordjoo\Apigee\Api\Edge\Entities\Attribute;
-use Lordjoo\Apigee\Apigee;
-use ReflectionProperty;
+use Lordjoo\Apigee\Abstract\ApigeeX\Entity;
 
-abstract class Entity
+abstract class BaseEntity
 {
-    protected ApigeeEdge $client;
 
     public function __construct(array $data)
     {
-        $this->client = app(Apigee::class)->edge();
         $this->setAttributes($data);
     }
 
@@ -76,4 +71,5 @@ abstract class Entity
 
         return $data;
     }
+
 }

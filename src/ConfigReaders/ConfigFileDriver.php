@@ -33,4 +33,9 @@ class ConfigFileDriver implements ConfigReaderInterface
     {
         return config('apigee.monetization.endpoint', '');
     }
+
+    public function getKeyFile(): string
+    {
+        return config('apigee.key_file', '');
+    }
 }

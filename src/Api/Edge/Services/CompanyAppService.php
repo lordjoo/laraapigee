@@ -4,18 +4,21 @@ namespace Lordjoo\Apigee\Api\Edge\Services;
 
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
-use Lordjoo\Apigee\Abstract\Service;
+use Lordjoo\Apigee\Abstract\Edge\Service;
 use Lordjoo\Apigee\Api\Edge\Entities\CompanyApp;
 use Lordjoo\Apigee\Exceptions\ValidationException;
 use Lordjoo\Apigee\Services\Validator;
+use Lordjoo\Apigee\Support\HttpClient;
 
 class CompanyAppService extends Service
 {
     protected string $companyName;
 
-    public function __construct(string $companyName)
+    public function __construct(
+        HttpClient $client,
+        string $companyName)
     {
-        parent::__construct();
+        parent::__construct($client);
         $this->companyName = $companyName;
     }
 

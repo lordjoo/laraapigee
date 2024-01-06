@@ -67,4 +67,11 @@ class ConfigDBDriver implements ConfigReaderInterface
 
         return $this->data[$col];
     }
+
+    public function getKeyFile(): string
+    {
+        $col = config('apigee.db.columns.key_file');
+
+        return $this->data[$col];
+    }
 }

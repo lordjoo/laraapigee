@@ -3,7 +3,7 @@
 namespace Lordjoo\Apigee\Api\Edge\Services;
 
 use Illuminate\Support\Collection;
-use Lordjoo\Apigee\Abstract\Service;
+use Lordjoo\Apigee\Abstract\Edge\Service;
 use Lordjoo\Apigee\Api\Edge\Entities\ApiProxy;
 
 class ApiProxyService extends Service

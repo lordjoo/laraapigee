@@ -15,4 +15,6 @@ interface ConfigReaderInterface
     public function getMonetizationEnabled(): bool;
 
     public function getMonetizationEndpoint(): string;
+
+    public function getKeyFile(): string;
 }

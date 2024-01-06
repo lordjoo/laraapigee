@@ -2,7 +2,7 @@
 
 namespace Lordjoo\Apigee\Api\Edge\Entities;
 
-use Lordjoo\Apigee\Abstract\Entity;
+use Lordjoo\Apigee\Abstract\Edge\Entity;
 use Lordjoo\Apigee\Api\Edge\Entities\Properties\AppPropertiesAware;
 use Lordjoo\Apigee\Api\Edge\Entities\Properties\AttributePropertyAware;
 

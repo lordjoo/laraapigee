@@ -4,7 +4,7 @@ namespace Lordjoo\Apigee\Api\Edge\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use Lordjoo\Apigee\Abstract\Entity;
+use Lordjoo\Apigee\Abstract\Edge\Entity;
 use Lordjoo\Apigee\Api\Edge\Entities\Properties\AttributePropertyAware;
 
 class Developer extends Entity

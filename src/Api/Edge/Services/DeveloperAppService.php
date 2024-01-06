@@ -7,14 +7,17 @@ use Illuminate\Support\Facades\Validator;
 use Lordjoo\Apigee\Api\Edge\Entities\AppKey;
 use Lordjoo\Apigee\Api\Edge\Entities\DeveloperApp;
 use Lordjoo\Apigee\Exceptions\ValidationException;
+use Lordjoo\Apigee\Support\HttpClient;
 
-class DeveloperAppService extends \Lordjoo\Apigee\Abstract\Service
+class DeveloperAppService extends \Lordjoo\Apigee\Abstract\Edge\Service
 {
     protected string $developerEmail;
 
-    public function __construct(string $developerEmail)
+    public function __construct(
+        HttpClient $client,
+        string $developerEmail)
     {
-        parent::__construct();
+        parent::__construct($client);
         $this->developerEmail = $developerEmail;
     }
 

@@ -60,4 +60,14 @@ return [
             ],
         ],
     ],
+
+
+    /**
+     *
+     * Only for Apigee X authentication
+     * The path to the service account key file
+     * The file should be in the storage/app folder
+     *
+     */
+    "key_file" => storage_path('app/service_account_key.json'),
 ];

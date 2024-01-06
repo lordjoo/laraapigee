@@ -1,6 +1,6 @@
 <?php
 
-namespace Lordjoo\Apigee\Api\Edge\Services;
+namespace Lordjoo\Apigee\Api\ApigeeX\Services;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
@@ -10,8 +10,12 @@ use Lordjoo\Apigee\Exceptions\ValidationException;
 
 class ApiProductService extends Service
 {
+
     /**
      * Find an API product by name.
+     *
+     * @param string $name
+     * @return ApiProduct
      */
     public function find(string $name): ApiProduct
     {
@@ -53,6 +57,30 @@ class ApiProductService extends Service
         return new ApiProduct($response);
     }
 
+
+    /**
+     * Update an existing API product.
+     *
+     * @param array $data refer to https://apidocs.apigee.com/docs/api-products/1/types/APIProductRequest
+     *
+     * @throws ValidationException
+     */
+    public function update(string $name, array $data): ApiProduct
+    {
+        $this->validateData($data);
+        $response = $this->client->put('apiproducts/' . $name, $data)->json();
+
+        return new ApiProduct($response);
+    }
+
+    /**
+     * Delete an API product.
+     */
+    public function delete(string $name): void
+    {
+        $this->client->delete('apiproducts/' . $name);
+    }
+
     protected function validateData(array $data): void
     {
         $validator = Validator::make($data, [
@@ -81,26 +109,4 @@ class ApiProductService extends Service
 
     }
 
-    /**
-     * Update an existing API product.
-     *
-     * @param array $data refer to https://apidocs.apigee.com/docs/api-products/1/types/APIProductRequest
-     *
-     * @throws ValidationException
-     */
-    public function update(string $name, array $data): ApiProduct
-    {
-        $this->validateData($data);
-        $response = $this->client->put('apiproducts/' . $name, $data)->json();
-
-        return new ApiProduct($response);
-    }
-
-    /**
-     * Delete an API product.
-     */
-    public function delete(string $name): void
-    {
-        $this->client->delete('apiproducts/' . $name);
-    }
 }
