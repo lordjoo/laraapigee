@@ -1,6 +1,6 @@
 <?php
 
-use Lordjoo\Apigee\Api\Edge\Entities\ApiProxy;
+use Lordjoo\Apigee\Entities\ApiProxy;
 
 it('can fetch proxies from API', function () {
     $client = $this->app->make(\Lordjoo\Apigee\Apigee::class)->edge();

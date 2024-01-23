@@ -4,12 +4,12 @@ namespace Lordjoo\Apigee\Api\Edge\Services;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
-use Lordjoo\Apigee\Api\Edge\Entities\AppKey;
-use Lordjoo\Apigee\Api\Edge\Entities\DeveloperApp;
+use Lordjoo\Apigee\Entities\AppKey;
+use Lordjoo\Apigee\Entities\DeveloperApp;
 use Lordjoo\Apigee\Exceptions\ValidationException;
 use Lordjoo\Apigee\Support\HttpClient;
 
-class DeveloperAppService extends \Lordjoo\Apigee\Abstract\Edge\Service
+class DeveloperAppService extends \Lordjoo\Apigee\Abstract\BaseService
 {
     protected string $developerEmail;
 
@@ -24,7 +24,7 @@ class DeveloperAppService extends \Lordjoo\Apigee\Abstract\Edge\Service
     /**
      * Returns a list of all Developer Apps in the organization.
      *
-     * @return Collection<\Lordjoo\Apigee\Api\Edge\Entities\DeveloperApp>
+     * @return Collection<\Lordjoo\Apigee\Entities\DeveloperApp>
      */
     public function get(): Collection
     {
@@ -33,7 +33,7 @@ class DeveloperAppService extends \Lordjoo\Apigee\Abstract\Edge\Service
         ])->json();
 
         return collect($response['app'])->map(function ($app) {
-            return new \Lordjoo\Apigee\Api\Edge\Entities\DeveloperApp($app);
+            return new \Lordjoo\Apigee\Entities\DeveloperApp($app);
         });
     }
 
@@ -58,7 +58,7 @@ class DeveloperAppService extends \Lordjoo\Apigee\Abstract\Edge\Service
     {
         $response = $this->client->post('developers/'.$this->developerEmail.'/apps', $data)->json();
 
-        return new \Lordjoo\Apigee\Api\Edge\Entities\DeveloperApp($response);
+        return new \Lordjoo\Apigee\Entities\DeveloperApp($response);
     }
 
     /**
@@ -70,7 +70,7 @@ class DeveloperAppService extends \Lordjoo\Apigee\Abstract\Edge\Service
     {
         $response = $this->client->put('developers/'.$this->developerEmail.'/apps/'.$appName, $data)->json();
 
-        return new \Lordjoo\Apigee\Api\Edge\Entities\DeveloperApp($response);
+        return new \Lordjoo\Apigee\Entities\DeveloperApp($response);
     }
 
     /**

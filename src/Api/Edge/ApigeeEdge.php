@@ -5,9 +5,10 @@ namespace Lordjoo\Apigee\Api\Edge;
 use Exception;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
+use Lordjoo\Apigee\Abstract\ApigeeApiInterface;
 use Lordjoo\Apigee\Api\Edge\Monetization\Monetization;
-use Lordjoo\Apigee\Api\Edge\Services\ApiProductService;
-use Lordjoo\Apigee\Api\Edge\Services\ApiProxyService;
+use Lordjoo\Apigee\Api\Edge\Services\ProductService;
+use Lordjoo\Apigee\Api\Edge\Services\ProxyService;
 use Lordjoo\Apigee\Api\Edge\Services\CompanyAppService;
 use Lordjoo\Apigee\Api\Edge\Services\CompanyService;
 use Lordjoo\Apigee\Api\Edge\Services\DeveloperAppService;
@@ -20,7 +21,7 @@ use Lordjoo\Apigee\Support\HttpClient;
  *
  * @method static ApigeeEdge init()
  */
-class ApigeeEdge
+class ApigeeEdge implements ApigeeApiInterface
 {
 
     protected ?PendingRequest $httpClient;
@@ -41,14 +42,14 @@ class ApigeeEdge
         return $this->httpClient->get('environments')->json();
     }
 
-    public function apiProxy(): Services\ApiProxyService
+    public function proxy(): Services\ProxyService
     {
-        return new ApiProxyService($this->client);
+        return new ProxyService($this->client);
     }
 
-    public function apiProduct(): Services\ApiProductService
+    public function product(): Services\ProductService
     {
-        return new ApiProductService($this->client);
+        return new ProductService($this->client);
     }
 
     public function developer(): Services\DeveloperService

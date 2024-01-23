@@ -3,17 +3,17 @@
 namespace Lordjoo\Apigee\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Lordjoo\Apigee\Api\Edge\Services\ProductService;
 
 /**
  * @see \Lordjoo\Apigee\Apigee
  *
- * @method static \Lordjoo\Apigee\Api\Edge\ApigeeEdge edge()
- * @method static \Lordjoo\Apigee\Api\ApigeeX\ApigeeX x()
+ * @method static ProductService|ProductService product()
  */
 class Apigee extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'apigee';
+        return \Lordjoo\Apigee\Apigee::class;
     }
 }

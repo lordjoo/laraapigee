@@ -2,7 +2,7 @@
 
 namespace Lordjoo\Apigee\Api\Edge\Monetization\Services;
 
-use Lordjoo\Apigee\Api\Edge\Monetization\Entities\Organization;
+use Lordjoo\Apigee\Entities\Monetization\Organization;
 
 class OrganizationService extends Service
 {

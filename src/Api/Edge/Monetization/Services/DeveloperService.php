@@ -2,9 +2,9 @@
 
 namespace Lordjoo\Apigee\Api\Edge\Monetization\Services;
 
-use Lordjoo\Apigee\Api\Edge\Monetization\Entities\Developer;
-use Lordjoo\Apigee\Api\Edge\Monetization\Entities\DeveloperBalance;
-use Lordjoo\Apigee\Api\Edge\Monetization\Entities\DeveloperRatePlan;
+use Lordjoo\Apigee\Entities\Monetization\Developer;
+use Lordjoo\Apigee\Entities\Monetization\DeveloperBalance;
+use Lordjoo\Apigee\Entities\Monetization\DeveloperRatePlan;
 
 class DeveloperService extends Service
 {

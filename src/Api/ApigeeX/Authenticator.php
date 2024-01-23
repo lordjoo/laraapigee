@@ -2,6 +2,8 @@
 
 namespace Lordjoo\Apigee\Api\ApigeeX;
 
+use Illuminate\Support\Facades\Cache;
+
 class Authenticator
 {
 
@@ -17,8 +19,8 @@ class Authenticator
     public function getToken(): string
     {
         if ($this->is_cached) {
-            if (cache()->has($this->cache_key)) {
-                return cache()->get($this->cache_key);
+            if (Cache::has($this->cache_key)) {
+                return Cache::get($this->cache_key);
             }
         }
 

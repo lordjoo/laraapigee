@@ -1,6 +1,14 @@
 <?php
 
 return [
+
+    /*
+     * The type of the Apigee which we are using
+     *
+     * Available options are: edge, x
+     */
+    "type" => env('APIGEE_TYPE', 'edge'),
+
     /*
      * The driver which is responsible for reading the configuration.
      *

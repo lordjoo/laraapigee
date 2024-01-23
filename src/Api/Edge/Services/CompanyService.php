@@ -5,11 +5,11 @@ namespace Lordjoo\Apigee\Api\Edge\Services;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
-use Lordjoo\Apigee\Abstract\Edge\Service;
-use Lordjoo\Apigee\Api\Edge\Entities\Company;
+use Lordjoo\Apigee\Abstract\BaseService;
+use Lordjoo\Apigee\Entities\Company;
 use Lordjoo\Apigee\Exceptions\ValidationException;
 
-class CompanyService extends Service
+class CompanyService extends BaseService
 {
     /**
      * Get a company by name.
@@ -26,7 +26,7 @@ class CompanyService extends Service
     /**
      * Get all companies in the organization.
      *
-     * @return Collection<Company>
+     * @return Collection<\Lordjoo\Apigee\Entities\Company>
      */
     public function get(): Collection
     {

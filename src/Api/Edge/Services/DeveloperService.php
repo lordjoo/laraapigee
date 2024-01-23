@@ -5,11 +5,11 @@ namespace Lordjoo\Apigee\Api\Edge\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
-use Lordjoo\Apigee\Abstract\Edge\Service;
-use Lordjoo\Apigee\Api\Edge\Entities\Developer;
+use Lordjoo\Apigee\Abstract\BaseService;
+use Lordjoo\Apigee\Entities\Developer;
 use Lordjoo\Apigee\Exceptions\ValidationException;
 
-class DeveloperService extends Service
+class DeveloperService extends BaseService
 {
     /**
      * Finds an existing developer in the organization by email.

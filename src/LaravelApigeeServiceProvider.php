@@ -17,16 +17,13 @@ class LaravelApigeeServiceProvider extends PackageServiceProvider
             ->hasConfigFile();
     }
 
-    public function packageRegistered()
+    public function packageBooted()
     {
         $driver = config('apigee.driver');
+        $this->app->bind(ConfigReaders\ConfigReaderInterface::class, $driver);
         $client = Factory::fromDriver(new $driver());
         $this->app->singleton(Apigee::class, fn () => $client);
-        $this->app->bind(ConfigReaders\ConfigReaderInterface::class, $driver);
-        $this->app->singleton(Api\Edge\ApigeeEdge::class, fn () => $client->edge());
-        $this->app->singleton(Api\ApigeeX\ApigeeX::class, fn () => $client->x());
         $this->app->bind(ErrorHandlerInterface::class, Handler::class);
-
-
     }
+
 }

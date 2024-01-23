@@ -4,13 +4,13 @@ namespace Lordjoo\Apigee\Api\Edge\Services;
 
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
-use Lordjoo\Apigee\Abstract\Edge\Service;
-use Lordjoo\Apigee\Api\Edge\Entities\CompanyApp;
+use Lordjoo\Apigee\Abstract\BaseService;
+use Lordjoo\Apigee\Entities\CompanyApp;
 use Lordjoo\Apigee\Exceptions\ValidationException;
 use Lordjoo\Apigee\Services\Validator;
 use Lordjoo\Apigee\Support\HttpClient;
 
-class CompanyAppService extends Service
+class CompanyAppService extends BaseService
 {
     protected string $companyName;
 

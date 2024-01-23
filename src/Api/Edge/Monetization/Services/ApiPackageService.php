@@ -3,8 +3,8 @@
 namespace Lordjoo\Apigee\Api\Edge\Monetization\Services;
 
 use Illuminate\Support\Collection;
-use Lordjoo\Apigee\Api\Edge\Monetization\Entities\ApiPackage;
-use Lordjoo\Apigee\Api\Edge\Monetization\Entities\RatePlan;
+use Lordjoo\Apigee\Entities\Monetization\ApiPackage;
+use Lordjoo\Apigee\Entities\Monetization\RatePlan;
 
 class ApiPackageService extends Service
 {

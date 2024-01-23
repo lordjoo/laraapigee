@@ -5,13 +5,19 @@ namespace Lordjoo\Apigee\Abstract;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Lordjoo\Apigee\Abstract\ApigeeX\Entity;
+use Lordjoo\Apigee\Api\ApigeeX\ApigeeX;
+use Lordjoo\Apigee\Api\Edge\ApigeeEdge;
+use Lordjoo\Apigee\Facades\Apigee;
 
 abstract class BaseEntity
 {
 
+    protected ApigeeApiInterface $client;
+
     public function __construct(array $data)
     {
         $this->setAttributes($data);
+        $this->client = Apigee::client();
     }
 
     protected function setAttributes(array $data)
@@ -21,7 +27,7 @@ abstract class BaseEntity
                 if ($key === 'attributes') {
                     $this->attributes = [];
                     foreach ($value as $attribute) {
-                        $this->attributes[] = new Attribute($attribute);
+                        $this->attributes[] = new AttributeEntity($attribute);
                     }
 
                     continue;

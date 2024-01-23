@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Collection;
-use Lordjoo\Apigee\Api\Edge\Entities\ApiProduct;
+use Lordjoo\Apigee\Entities\ApiProduct;
 
 it('can create fetch all api products', function () {
     $client = $this->app->make(\Lordjoo\Apigee\Apigee::class)->edge();
