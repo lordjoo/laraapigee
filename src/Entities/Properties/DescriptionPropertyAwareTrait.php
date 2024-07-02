@@ -7,7 +7,7 @@ trait DescriptionPropertyAwareTrait
     /**
      * @var string|null
      */
-    private ?string $description = null;
+    protected ?string $description = null;
 
     /**
      * @return string|null

@@ -7,7 +7,7 @@ trait NamePropertyAwareTrait
     /**
      * @var string
      */
-    private string $name;
+    protected string $name;
 
     /**
      * @return string

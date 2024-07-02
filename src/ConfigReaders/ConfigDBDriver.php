@@ -74,4 +74,9 @@ class ConfigDBDriver extends ConfigDriver
 
         return $this->data[$col];
     }
+
+    public function get(string $key)
+    {
+        return $this->data[$key];
+    }
 }

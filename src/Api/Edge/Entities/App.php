@@ -6,6 +6,7 @@ use Lordjoo\LaraApigee\Entities\BaseEntity;
 use Lordjoo\LaraApigee\Entities\Properties\AttributesPropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\CommonEntityPropertiesAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\DescriptionPropertyAwareTrait;
+use Lordjoo\LaraApigee\Entities\Properties\DisplayNamePropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\NamePropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\StatusPropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Structure\AttributesProperty;
@@ -18,6 +19,7 @@ class App extends BaseEntity
     use StatusPropertyAwareTrait;
     use DescriptionPropertyAwareTrait;
     use AttributesPropertyAwareTrait;
+    use DisplayNamePropertyAwareTrait;
 
     protected string $appFamily = 'default';
 

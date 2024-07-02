@@ -23,8 +23,28 @@ class LaraApigee
         return new Edge($this->config);
     }
 
+    /**
+     * @return ApigeeX
+     */
     public function apigeeX(): ApigeeX
     {
         return new ApigeeX($this->config);
     }
+
+    /**
+     * @return Edge|ApigeeX
+     */
+    public function getDefaultInstance()
+    {
+        $defaultType = $this->config->get('default_type');
+
+        if ($defaultType === 'edge') {
+            return $this->edge();
+        } elseif ($defaultType === 'apigee_x') {
+            return $this->apigeeX();
+        } else {
+            throw new \InvalidArgumentException("Invalid default type specified: $defaultType");
+        }
+    }
+
 }

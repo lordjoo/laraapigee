@@ -6,15 +6,15 @@ use ArrayObject;
 use Exception;
 use Lordjoo\LaraApigee\Utility\Serializers\Denormalizers\AppCredentialsPropertyDenormalizer;
 use Lordjoo\LaraApigee\Utility\Serializers\Denormalizers\AttributesPropertyDenormalizer;
+use Lordjoo\LaraApigee\Utility\Serializers\Denormalizers\DateDenormalizer;
+use Lordjoo\LaraApigee\Utility\Serializers\Normalizers\AttributesPropertyNormalizer;
 use Lordjoo\LaraApigee\Utility\Serializers\Normalizers\DateNormalizer;
-use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
-use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 class EntitySerializer implements IEntitySerializer
@@ -32,8 +32,10 @@ class EntitySerializer implements IEntitySerializer
     public function __construct(array $normalizers = [])
     {
         $normalizers = array_merge($normalizers, [
+                new DateDenormalizer(),
                 new DateNormalizer(),
                 new AttributesPropertyDenormalizer(),
+                new AttributesPropertyNormalizer(),
 
                 new ArrayDenormalizer(),
                 new ObjectNormalizer(

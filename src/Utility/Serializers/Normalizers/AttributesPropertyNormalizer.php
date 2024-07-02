@@ -2,33 +2,32 @@
 
 namespace Lordjoo\LaraApigee\Utility\Serializers\Normalizers;
 
-use Carbon\Carbon;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Lordjoo\LaraApigee\Entities\Structure\AttributesProperty;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class DateNormalizer implements NormalizerInterface
+class AttributesPropertyNormalizer implements NormalizerInterface
 {
 
     public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        if (!$object instanceof Carbon) {
-            throw new InvalidArgumentException('The object must be an instance of Carbon');
+        $return = [];
+        foreach ($object->values() as $key => $value) {
+            $return[] = (object) ['name' => $key, 'value' => $value];
         }
-        return $object->timestamp;
+
+        return $return;
     }
+
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return $data instanceof Carbon;
+        return $data instanceof AttributesProperty;
     }
 
     public function getSupportedTypes(?string $format): array
     {
         return [
-            "*" => false,
-            Carbon::class => true,
+            AttributesProperty::class => true,
         ];
     }
-
 }

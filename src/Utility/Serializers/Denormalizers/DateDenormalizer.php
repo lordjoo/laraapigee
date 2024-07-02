@@ -1,94 +1,34 @@
 <?php
 
-/*
- * Copyright 2018 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 namespace Lordjoo\LaraApigee\Utility\Serializers\Denormalizers;
 
-use DateTime;
-use DateTimeImmutable;
-use DateTimeInterface;
-use DateTimeZone;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Carbon\Carbon;
+use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-/**
- * Class EdgeDateDenormalizer.
- */
 class DateDenormalizer implements DenormalizerInterface
 {
-    private static $supportedTypes = [
-        DateTimeInterface::class => true,
-        DateTimeImmutable::class => true,
-        DateTime::class => true,
-    ];
 
-    /** @var \Symfony\Component\Serializer\Normalizer\DateTimeNormalizer */
-    private $normalizer;
-
-    /**
-     * EdgeDateDenormalizer constructor.
-     */
-    public function __construct()
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $this->normalizer = new DateTimeNormalizer();
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @return object|null
-     *
-     * @psalm-suppress ImplementedReturnTypeMismatch - We have to return null,
-     * even if it not officially supported by the overridden class.
-     */
-    public function denormalize($data, $type, $format = null, array $context = []): mixed
-    {
-        // Handle -1 in expiresAt property of AppCredential.
-        if ($data < 0) {
+        if (null === $data) {
             return null;
         }
-        $context[$this->normalizer::FORMAT_KEY] = 'U';
-        $context[$this->normalizer::TIMEZONE_KEY] = new DateTimeZone('UTC');
-
-        // convert data in string format for denormalizer.
-        $data = (string) intval($data / 1000);
-
-        return $this->normalizer->denormalize($data, $type, $format, $context);
+        return new Carbon($data);
     }
 
-    /**
-     * {@inheritdoc}
-     * @param mixed $data
-     * @param string $type
-     * @param null $format
-     * @param array $context
-     */
-    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return isset(self::$supportedTypes[$type]);
+        return $type === Carbon::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSupportedTypes(?string $format): array
     {
         return [
-            '*' => false,
+            "*" => false,
+            Carbon::class => true,
         ];
     }
+
 }

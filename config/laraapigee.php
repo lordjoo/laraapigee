@@ -3,16 +3,15 @@
 return [
 
     /*
-     * The type of the Apigee which we are using
-     *
-     * Available options are: edge, x
+     * The default type of the API
+     * it can be either "edge" or "apigeex"
      */
-    "type" => env('APIGEE_TYPE', 'edge'),
+    "default_type" => "edge",
 
     /*
      * The driver which is responsible for reading the configuration.
      *
-     * it should implements the ConfigReaderInterface
+     * it should implement the ConfigReaderInterface
      */
     'driver' => \Lordjoo\LaraApigee\ConfigReaders\ConfigFileDriver::class,
 

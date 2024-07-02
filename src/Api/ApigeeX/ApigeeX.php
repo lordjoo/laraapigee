@@ -2,6 +2,8 @@
 
 namespace Lordjoo\LaraApigee\Api\ApigeeX;
 
+use Lordjoo\LaraApigee\Api\ApigeeX\Services\DeveloperAppService;
+use Lordjoo\LaraApigee\Api\ApigeeX\Services\DeveloperService;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 use Lordjoo\LaraApigee\HttpClient\Authenticators\Oauth;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
@@ -26,7 +28,15 @@ class ApigeeX
         return $this->httpClient;
     }
 
-    // Todo: Implement services
+    public function developers(): DeveloperService
+    {
+        return new DeveloperService($this->httpClient, $this->config);
+    }
+
+    public function developerApps(string $developerId): DeveloperAppService
+    {
+        return new DeveloperAppService($this->httpClient, $this->config, $developerId);
+    }
 
 
 }

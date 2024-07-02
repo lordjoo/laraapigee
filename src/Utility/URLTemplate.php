@@ -44,7 +44,7 @@ class URLTemplate
      * @param string $path The path segment to append
      * @return self
      */
-    public function appendPath(?string $path = null): self
+    public function appendPath(?string $path = ""): self
     {
         $this->baseURL = rtrim($this->baseURL, '/') . '/' . ltrim($path, '/');
         return $this;

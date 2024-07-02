@@ -38,4 +38,10 @@ class ConfigFileDriver extends ConfigDriver
     {
         return config('laraapigee.key_file', '');
     }
+
+
+    public function get(string $key): string
+    {
+        return config("laraapigee.$key");
+    }
 }
