@@ -19,11 +19,10 @@ class App extends BaseEntity
     use StatusPropertyAwareTrait;
     use DescriptionPropertyAwareTrait;
     use AttributesPropertyAwareTrait;
-    use DisplayNamePropertyAwareTrait;
 
     protected string $appFamily = 'default';
 
-    protected string $appId;
+    protected ?string $appId = null;
 
     protected string $callbackUrl;
 
@@ -31,10 +30,23 @@ class App extends BaseEntity
 
     protected array $initialApiProducts = [];
 
+    protected string $displayName;
+
     public function __construct(array $values = [])
     {
         $this->attributes = new AttributesProperty();
         parent::__construct($values);
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->getAttributeValue('Notes');
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->setAttribute('Notes', $description);
+        return $this;
     }
 
     public function getAppFamily(): string
@@ -112,6 +124,11 @@ class App extends BaseEntity
     {
         $this->setAttribute('DisplayName', $displayName);
         return $this;
+    }
+
+    final public function getApiProducts(): array
+    {
+        return $this->initialApiProducts;
     }
 
 

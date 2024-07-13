@@ -15,6 +15,9 @@ class AttributesPropertyDenormalizer implements DenormalizerInterface
             if (is_object($item)) {
                 // $data came from the EntityNormalizer.
                 $flatten[$item->name] = $item->value ?? null;
+            }
+            if (is_array($item) && isset($item['name']) && isset($item['value'])) {
+                $flatten[$item['name']] = $item['value'];
             } else {
                 $flatten[$key] = $item;
             }
