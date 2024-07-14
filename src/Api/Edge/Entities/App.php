@@ -24,7 +24,7 @@ class App extends BaseEntity
 
     protected ?string $appId = null;
 
-    protected string $callbackUrl;
+    protected ?string $callbackUrl = null;
 
     protected array $credentials = [];
 
@@ -76,7 +76,7 @@ class App extends BaseEntity
         return $this->callbackUrl;
     }
 
-    public function setCallbackUrl(string $callbackUrl): self
+    public function setCallbackUrl(?string $callbackUrl): self
     {
         $this->callbackUrl = $callbackUrl;
         return $this;
