@@ -173,6 +173,48 @@ abstract class AppCredentialsService extends BaseService
         $this->getClient()->delete($this->getEntityPath()->appendPath("/{$consumerKey}")->getURL());
     }
 
+    /**
+     * Revoke an app credential
+     *
+     * @param string $consumerKey
+     * @return AppCredential
+     * @throws ExceptionInterface
+     */
+    public function approve(string $consumerKey): AppCredential
+    {
+        $this->getClient()->post(
+            $this->getEntityPath()->appendPath("/{$consumerKey}")->getURL(), [
+            "json" => [
+                'status' => 'approved'
+            ],
+            "headers" => [
+                "Content-Type" => "application/octet-stream"
+            ]
+        ]);
+        return $this->load($consumerKey);
+    }
+
+    /**
+     * Reject an app credential
+     *
+     * @param string $consumerKey
+     * @return AppCredential
+     * @throws ExceptionInterface
+     */
+    public function revoke(string $consumerKey): AppCredential
+    {
+        $this->getClient()->post(
+            $this->getEntityPath()->appendPath("/{$consumerKey}")->getURL(), [
+            "query" => [
+                'action' => 'revoke'
+            ],
+            "headers" => [
+                "Content-Type" => "application/octet-stream"
+            ]
+        ]);
+        return $this->load($consumerKey);
+    }
+
 
     protected function getEntityPath(?string $path = null): URLTemplate
     {
