@@ -3,6 +3,12 @@
 return [
 
     /*
+     * The default type of the API
+     * it can be either "edge" or "apigeex"
+     */
+    "default_type" => "edge",
+
+    /*
      * The driver which is responsible for reading the configuration.
      *
      * it should implement the ConfigReaderInterface
