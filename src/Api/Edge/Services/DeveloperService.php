@@ -15,6 +15,28 @@ class DeveloperService extends BaseService
         EntityEndpointAwareTrait,
         EntityClassAwareTrait;
 
+    /**
+     * Update the status of a developer.
+     *
+     * @param string $email
+     * @param string $status 'active' or 'inactive'
+     * @return \Lordjoo\LaraApigee\Entities\IEntity|null
+     */
+    public function setStatus(string $email, string $status)
+    {
+        $this->getClient()->post(
+            $this->getEntityPath()->appendPath("/{$email}")->getURL(), [
+            "query" => [
+                "action" => $status
+            ],
+            "headers" => [
+                "Content-Type" => "application/octet-stream"
+            ]
+        ]);
+
+        return $this->find($email);
+    }
+
     protected function getEntityPath(?string $path = null): URLTemplate
     {
         return (new URLTemplate('developers/'))->appendPath($path);
