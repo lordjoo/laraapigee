@@ -28,27 +28,27 @@ class ApiProduct extends BaseEntity
     /**
      * @var string[]
      */
-    protected array $resources;
+    protected array $resources = [];
 
     /**
      * @var string[]
      */
-    protected array $proxies;
+    protected array $proxies = [];
 
     /**
      * @var string
      */
-    protected string $quota;
+    protected ?string $quota = null;
 
     /**
      * @var string
      */
-    protected string $quotaInterval;
+    protected ?string $quotaInterval = null;
 
     /**
      * @var string
      */
-    protected string $quotaTimeUnit;
+    protected ?string $quotaTimeUnit = null;
 
 
     public function __construct(array $values = [])
@@ -79,7 +79,7 @@ class ApiProduct extends BaseEntity
     /**
      * @return string[]
      */
-    public function getResources(): array
+    public function getResources(): ?array
     {
         return $this->resources;
     }
@@ -99,7 +99,7 @@ class ApiProduct extends BaseEntity
     /**
      * @return string[]
      */
-    public function getProxies(): array
+    public function getProxies(): ?array
     {
         return $this->proxies;
     }
@@ -119,7 +119,7 @@ class ApiProduct extends BaseEntity
     /**
      * @return string
      */
-    public function getQuota(): string
+    public function getQuota(): ?string
     {
         return $this->quota;
     }
@@ -139,7 +139,7 @@ class ApiProduct extends BaseEntity
     /**
      * @return string
      */
-    public function getQuotaInterval(): string
+    public function getQuotaInterval(): ?string
     {
         return $this->quotaInterval;
     }
@@ -159,7 +159,7 @@ class ApiProduct extends BaseEntity
     /**
      * @return string
      */
-    public function getQuotaTimeUnit(): string
+    public function getQuotaTimeUnit(): ?string
     {
         return $this->quotaTimeUnit;
     }

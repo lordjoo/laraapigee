@@ -84,4 +84,9 @@ class AttributesProperty extends BaseObject
     {
         return new \ArrayIterator($this->values());
     }
+
+    public function toArray(): array
+    {
+        return $this->values();
+    }
 }
