@@ -12,7 +12,7 @@ class AttributesPropertyNormalizer implements NormalizerInterface
     {
         $return = [];
         foreach ($object->values() as $key => $value) {
-            $return[] = (object) ['name' => $key, 'value' => $value];
+            $return[] =  ['name' => $key, 'value' => $value];
         }
 
         return $return;
