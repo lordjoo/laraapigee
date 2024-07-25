@@ -3,6 +3,8 @@
 namespace Lordjoo\LaraApigee\Entities\Structure;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Lordjoo\LaraApigee\Utility\Serializers\EntitySerializer;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 abstract class BaseObject implements Arrayable
 {
@@ -41,36 +43,12 @@ abstract class BaseObject implements Arrayable
      * Convert the object to an array.
      *
      * @return array
+     * @throws ExceptionInterface
      */
     public function toArray(): array
     {
-        $ro = new \ReflectionObject($this);
-        $values = [];
-        foreach ($ro->getProperties() as $property) {
-            // if the property is a complex object, we need to call toArray() recursively
-            if ($property->getType() && !$property->getType()->isBuiltin()) {
-                $getter = 'get' . ucfirst($property->getName());
-                if ($ro->hasMethod($getter)) {
-                    $rm = new \ReflectionMethod($this, $getter);
-                    // if has toString method, call it
-                    $value = $rm->invoke($this)->toArray();
-                    if (method_exists($rm->invoke($this), 'toString')) {
-                        $value = $rm->invoke($this)->toString();
-                    } else if (method_exists($rm->invoke($this), 'toArray')) {
-                        $value = $rm->invoke($this)->toArray();
-                    }
-                    $values[$property->getName()] = $value;
-                }
-                continue;
-            }
-
-            $getter = 'get' . ucfirst($property->getName());
-            if ($ro->hasMethod($getter)) {
-                $rm = new \ReflectionMethod($this, $getter);
-                $values[$property->getName()] = $rm->invoke($this);
-            }
-        }
-        return $values;
+        $serializer = app(EntitySerializer::class);
+        return $serializer->normalize($this,'array');
     }
 
 

@@ -33,7 +33,7 @@ abstract class BaseService
      */
     protected function getSerializer(): EntitySerializer
     {
-        return new EntitySerializer();
+        return app(EntitySerializer::class);
     }
 
 }

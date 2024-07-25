@@ -34,6 +34,7 @@ class EntitySerializer implements IEntitySerializer
         $normalizers = array_merge($normalizers, [
                 new DateDenormalizer(),
                 new DateNormalizer(),
+
                 new AttributesPropertyDenormalizer(),
                 new AttributesPropertyNormalizer(),
 
@@ -146,6 +147,5 @@ class EntitySerializer implements IEntitySerializer
     {
         return new JsonEncoder(new JsonDecode());
     }
-
 
 }

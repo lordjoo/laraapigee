@@ -2,6 +2,7 @@
 
 namespace Lordjoo\LaraApigee;
 
+use Lordjoo\LaraApigee\Utility\Serializers\EntitySerializer;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Lordjoo\LaraApigee\Commands\LaraApigeeCommand;
@@ -19,6 +20,13 @@ class LaraApigeeServiceProvider extends PackageServiceProvider
     {
         $driver = config('laraapigee.driver');
         $this->app->bind(ConfigReaders\ConfigDriver::class, $driver);
+
+        $normalizers = config('laraapigee.normalizers', []);
+        $this->app->singleton(
+            EntitySerializer::class,
+            fn () => new EntitySerializer($normalizers)
+        );
+
         $this->app->singleton(LaraApigee::class, fn () => new LaraApigee());
         $this->app->alias(LaraApigee::class, 'lara-apigee');
     }
