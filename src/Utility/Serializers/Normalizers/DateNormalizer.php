@@ -15,7 +15,7 @@ class DateNormalizer implements NormalizerInterface
         if (!$object instanceof Carbon) {
             throw new InvalidArgumentException('The object must be an instance of Carbon');
         }
-        return $object->timestamp;
+        return $object->getTimestampMs();
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool

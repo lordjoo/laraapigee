@@ -15,7 +15,7 @@ class DateDenormalizer implements DenormalizerInterface
         if (null === $data) {
             return null;
         }
-        return new Carbon($data);
+        return Carbon::createFromTimestampMs($data);
     }
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
