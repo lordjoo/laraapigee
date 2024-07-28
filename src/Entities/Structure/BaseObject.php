@@ -52,4 +52,13 @@ abstract class BaseObject implements Arrayable
     }
 
 
+    public function __get(string $name)
+    {
+        $getter = 'get' . ucfirst($name);
+        if (method_exists($this, $getter)) {
+            return $this->$getter();
+        }
+        return null;
+    }
+
 }
