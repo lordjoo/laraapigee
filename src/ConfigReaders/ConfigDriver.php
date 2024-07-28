@@ -11,7 +11,7 @@ abstract class ConfigDriver
         $properties = $re->getMethods();
         $config = [];
         foreach ($properties as $property) {
-            if (strpos($property->name, 'get') === 0) {
+            if (str_starts_with($property->name, 'get')) {
                 $config[strtolower(lcfirst(substr($property->name, 3)))] = $this->{$property->name}();
             }
         }

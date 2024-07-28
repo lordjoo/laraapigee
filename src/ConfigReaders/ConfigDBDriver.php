@@ -75,7 +75,7 @@ class ConfigDBDriver extends ConfigDriver
         return $this->data[$col];
     }
 
-    public function get(string $key)
+    public function get(string $key): string
     {
         return $this->data[$key];
     }

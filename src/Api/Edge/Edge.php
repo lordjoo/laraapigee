@@ -40,9 +40,9 @@ class Edge
         return new Services\AppService($this->httpClient,$this->config);
     }
 
-    public function developerApps(string $developerId): Services\DeveloperAppService
+    public function developerApps(string $email): Services\DeveloperAppService
     {
-        return new Services\DeveloperAppService($this->httpClient,$this->config,$developerId);
+        return new Services\DeveloperAppService($this->httpClient,$this->config,$email);
     }
 
     public function developerAppCredentials(string $developerId, string $appName): Services\DeveloperAppCredentialsService

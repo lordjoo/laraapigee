@@ -4,7 +4,7 @@ namespace Lordjoo\LaraApigee\Api\Edge\Entities;
 
 class DeveloperApp extends App
 {
-    protected string $developerId;
+    public string $developerId;
 
     public function getDeveloperId(): string
     {

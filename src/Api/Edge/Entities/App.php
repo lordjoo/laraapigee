@@ -20,17 +20,17 @@ class App extends BaseEntity
     use DescriptionPropertyAwareTrait;
     use AttributesPropertyAwareTrait;
 
-    protected string $appFamily = 'default';
+    public string $appFamily = 'default';
 
-    protected ?string $appId = null;
+    public ?string $appId = null;
 
-    protected ?string $callbackUrl = null;
+    public ?string $callbackUrl = null;
 
-    protected array $credentials = [];
+    public array $credentials = [];
 
-    protected array $initialApiProducts = [];
+    public array $initialApiProducts = [];
 
-    protected string $displayName;
+    public string $displayName;
 
     public function __construct(array $values = [])
     {
