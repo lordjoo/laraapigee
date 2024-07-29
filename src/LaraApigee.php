@@ -32,18 +32,17 @@ class LaraApigee
     }
 
     /**
+     * @param string $platform edge|apigeex|monetization
      * @return Edge|ApigeeX
      */
-    public function getDefaultInstance()
+    public function platform(string $platform): Edge|ApigeeX
     {
-        $defaultType = $this->config->get('default_type');
-
-        if ($defaultType === 'edge') {
+        if ($platform === 'edge') {
             return $this->edge();
-        } elseif ($defaultType === 'apigee_x') {
+        } elseif ($platform === 'apigeex') {
             return $this->apigeeX();
         } else {
-            throw new \InvalidArgumentException("Invalid default type specified: $defaultType");
+            throw new \InvalidArgumentException("Invalid platform specified: $platform");
         }
     }
 
