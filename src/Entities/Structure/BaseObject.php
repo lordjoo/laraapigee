@@ -24,6 +24,7 @@ abstract class BaseObject implements Arrayable
                 } catch (\TypeError $error) {
                     // Auto-retry, pass the value as variable-length arguments.
                     // Ignore empty variable list.
+
                     if (is_array($value)) {
                         // Clear the value of the property.
                         if (empty($value)) {
