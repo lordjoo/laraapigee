@@ -12,9 +12,10 @@ class DateDenormalizer implements DenormalizerInterface
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (null === $data) {
+        if (null === $data || $data <= 1) {
             return null;
         }
+
         return Carbon::createFromTimestampMs($data);
     }
 

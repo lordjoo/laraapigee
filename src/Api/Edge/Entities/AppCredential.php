@@ -21,7 +21,7 @@ class AppCredential extends BaseEntity
 
     protected array $scopes = [];
 
-    protected Carbon $expiresAt;
+    protected ?Carbon $expiresAt = null;
 
     protected Carbon $issuedAt;
 
@@ -80,12 +80,12 @@ class AppCredential extends BaseEntity
         return $this;
     }
 
-    public function getExpiresAt(): Carbon
+    public function getExpiresAt(): ?Carbon
     {
         return $this->expiresAt;
     }
 
-    public function setExpiresAt(Carbon $expiresAt): self
+    public function setExpiresAt(?Carbon $expiresAt = null): self
     {
         $this->expiresAt = $expiresAt;
         return $this;

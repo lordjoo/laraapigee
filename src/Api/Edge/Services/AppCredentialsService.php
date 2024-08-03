@@ -78,21 +78,16 @@ abstract class AppCredentialsService extends BaseService
      */
     public function generate(
         array              $apiProducts,
-        AttributesProperty $appAttributes = null,
-        string             $callbackUrl = "",
-        array              $scopes = [],
         string             $keyExpiresIn = '-1'
     ): array
     {
         $path = 'developers/' . rawurlencode($this->developerId) . '/apps/' . rawurlencode($this->appName);
-        $response = $this->getClient()->put(
+        $response = $this->getClient()->post(
             $path, [
             "json" => [
                 'apiProducts' => $apiProducts,
-                'appAttributes' => $this->getSerializer()->normalize($appAttributes, 'json'),
-                'callbackUrl' => $callbackUrl,
-                'scopes' => $scopes,
-                'keyExpiresIn' => $keyExpiresIn
+                'keyExpiresIn' => $keyExpiresIn,
+                'name' => $this->appName
             ]
         ]);
         $responseData = json_decode($response->getBody()->getContents(), true);
@@ -184,8 +179,8 @@ abstract class AppCredentialsService extends BaseService
     {
         $this->getClient()->post(
             $this->getEntityPath()->appendPath("/{$consumerKey}")->getURL(), [
-            "json" => [
-                'status' => 'approved'
+            "query" => [
+                'action' => 'approve'
             ],
             "headers" => [
                 "Content-Type" => "application/octet-stream"
