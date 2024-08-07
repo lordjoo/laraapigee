@@ -10,9 +10,9 @@ class LaraApigee
 {
     protected ConfigDriver $config;
 
-    public function __construct()
+    public function __construct(ConfigDriver $config)
     {
-        $this->config = app(ConfigDriver::class);
+        $this->config = $config;
     }
 
     /**

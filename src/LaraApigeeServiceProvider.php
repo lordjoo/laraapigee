@@ -39,7 +39,7 @@ class LaraApigeeServiceProvider extends PackageServiceProvider
             fn () => new ApigeeX($this->app->make(ConfigReaders\ConfigDriver::class))
         );
 
-        $this->app->singleton(LaraApigee::class, fn () => new LaraApigee());
+        $this->app->singleton(LaraApigee::class, fn () => new LaraApigee($this->app->make(ConfigReaders\ConfigDriver::class)));
         $this->app->alias(LaraApigee::class, 'lara-apigee');
     }
 
