@@ -22,11 +22,7 @@ trait FindEntityOperationTrait
     public function find($entityId): ?IEntity
     {
         $path = (string) $this->getEntityPath("/$entityId");
-        try {
-            $response = $this->getClient()->get($path);
-        } catch (\Exception $e) {
-            return null;
-        }
+        $response = $this->getClient()->get($path);
         return $this->getSerializer()->denormalize(json_decode($response->getBody()->getContents(), true), $this->getEntityClass());
     }
 }

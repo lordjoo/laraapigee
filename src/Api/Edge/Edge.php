@@ -54,4 +54,9 @@ class Edge
     {
         return new Services\CompanyService($this->httpClient,$this->config);
     }
+
+    public function targetServers(string $environment): Services\TargetServerService
+    {
+        return new Services\TargetServerService($this->httpClient,$this->config,$environment);
+    }
 }

@@ -28,7 +28,11 @@ trait LoadEntityOperationTrait
 
         $content = $response->getBody()->getContents();
         $content = json_decode($content, true);
+        if (!is_array(reset($content))) {
+            return $content;
+        }
         $content = reset($content);
+
 
         if ([] === $content) {
             return [];
