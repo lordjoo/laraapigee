@@ -2,15 +2,15 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Contracts\AppServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\App;
-use Lordjoo\LaraApigee\Api\Edge\Entities\Developer;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
-class AppService extends BaseService
+class AppService extends BaseService implements AppServiceInterface
 {
     use Operations\CrudOperationsTrait,
         EntityEndpointAwareTrait,

@@ -2,6 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Contracts\AppCredentialsServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\AppCredential;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 use Lordjoo\LaraApigee\Entities\Structure\AttributesProperty;
@@ -13,7 +14,7 @@ use Lordjoo\LaraApigee\Services\EntitySerializerAwareTrait;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
-abstract class AppCredentialsService extends BaseService
+abstract class AppCredentialsService extends BaseService implements AppCredentialsServiceInterface
 {
     use EntityEndpointAwareTrait,
         EntitySerializerAwareTrait,
@@ -41,7 +42,7 @@ abstract class AppCredentialsService extends BaseService
      */
     public function create(string $consumerKey, string $consumerSecret): AppCredential
     {
-        $response = $this->getClient()->post($this->getEntityPath()->appendPath('/create')->getURL(), [
+        $response = $this->getClient()->put($this->getEntityPath()->appendPath('/create')->getURL(), [
             "json" => [
                 'consumerKey' => $consumerKey,
                 'consumerSecret' => $consumerSecret
@@ -161,11 +162,12 @@ abstract class AppCredentialsService extends BaseService
      * Delete an app credential
      *
      * @param string $consumerKey
-     * @return void
+     * @return bool
      */
-    public function delete(string $consumerKey): void
+    public function delete(string $consumerKey): bool
     {
         $this->getClient()->delete($this->getEntityPath()->appendPath("/{$consumerKey}")->getURL());
+        return true;
     }
 
     /**

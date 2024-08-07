@@ -2,7 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
-use Lordjoo\LaraApigee\Api\Edge\Entities\App;
+use Lordjoo\LaraApigee\Api\Edge\Contracts\CompanyServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\Company;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
@@ -10,7 +10,7 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
-class CompanyService extends BaseService
+class CompanyService extends BaseService implements CompanyServiceInterface
 {
     use Operations\CrudOperationsTrait,
         EntityEndpointAwareTrait,

@@ -2,6 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Contracts\DeveloperServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\Developer;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
@@ -9,7 +10,7 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
-class DeveloperService extends BaseService
+class DeveloperService extends BaseService implements  DeveloperServiceInterface
 {
     use Operations\CrudOperationsTrait,
         EntityEndpointAwareTrait,

@@ -6,7 +6,6 @@ use Lordjoo\LaraApigee\Entities\IEntity;
 use Lordjoo\LaraApigee\Services\ClientAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
-use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 trait LoadEntityOperationTrait
 {
@@ -16,7 +15,7 @@ trait LoadEntityOperationTrait
 
     /**
      * @return IEntity[]
-     * @throws ExceptionInterface
+     * @throws \Exception|\Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function get(): array
     {

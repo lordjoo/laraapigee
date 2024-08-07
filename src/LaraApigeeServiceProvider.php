@@ -2,6 +2,8 @@
 
 namespace Lordjoo\LaraApigee;
 
+use Lordjoo\LaraApigee\Api\ApigeeX\ApigeeX;
+use Lordjoo\LaraApigee\Api\Edge\Edge;
 use Lordjoo\LaraApigee\Utility\Serializers\EntitySerializer;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -25,6 +27,16 @@ class LaraApigeeServiceProvider extends PackageServiceProvider
         $this->app->singleton(
             EntitySerializer::class,
             fn () => new EntitySerializer($normalizers)
+        );
+
+        $this->app->singleton(
+            Edge::class,
+            fn () => new Edge($this->app->make(ConfigReaders\ConfigDriver::class))
+        );
+
+        $this->app->singleton(
+            ApigeeX::class,
+            fn () => new ApigeeX($this->app->make(ConfigReaders\ConfigDriver::class))
         );
 
         $this->app->singleton(LaraApigee::class, fn () => new LaraApigee());

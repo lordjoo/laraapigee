@@ -3,6 +3,7 @@
 namespace Lordjoo\LaraApigee\Services\Operations;
 
 use Lordjoo\LaraApigee\Entities\IEntity;
+use Lordjoo\LaraApigee\Exceptions\ApiException;
 use Lordjoo\LaraApigee\Services\ClientAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
@@ -19,9 +20,9 @@ trait CreateEntityOperationTrait
     /**
      * @param IEntity $entity
      * @return IEntity|null
-     * @throws ExceptionInterface
+     * @throws ExceptionInterface|ApiException
      */
-    public function create(IEntity $entity): ?IEntity
+    public function create(IEntity $entity): IEntity
     {
         $path = (string) $this->getEntityPath();
         $data = $this->getSerializer()->normalize($entity,'json');
