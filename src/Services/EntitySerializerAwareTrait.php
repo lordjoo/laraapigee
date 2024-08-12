@@ -2,9 +2,9 @@
 
 namespace Lordjoo\LaraApigee\Services;
 
-use Lordjoo\LaraApigee\Utility\Serializers\IEntitySerializer;
+use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializerInterface;
 
 trait EntitySerializerAwareTrait
 {
-    abstract public function getSerializer(): IEntitySerializer;
+    abstract public function getSerializer(): EntitySerializerInterface;
 }

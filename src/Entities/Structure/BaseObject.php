@@ -3,7 +3,7 @@
 namespace Lordjoo\LaraApigee\Entities\Structure;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Lordjoo\LaraApigee\Utility\Serializers\EntitySerializer;
+use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializer;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 abstract class BaseObject implements Arrayable
@@ -48,7 +48,7 @@ abstract class BaseObject implements Arrayable
      */
     public function toArray(): array
     {
-        $serializer = app(EntitySerializer::class);
+        $serializer = new EntitySerializer();
         return $serializer->normalize($this,'array');
     }
 

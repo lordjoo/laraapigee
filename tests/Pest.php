@@ -1,5 +1,5 @@
 <?php
 
-use next\tests\TestCase;
+use Lordjoo\LaraApigee\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

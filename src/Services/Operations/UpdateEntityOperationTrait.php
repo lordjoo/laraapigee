@@ -2,7 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Services\Operations;
 
-use Lordjoo\LaraApigee\Entities\IEntity;
+use Lordjoo\LaraApigee\Entities\EntityInterface;
 use Lordjoo\LaraApigee\Exceptions\ApiException;
 use Lordjoo\LaraApigee\Services\ClientAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
@@ -19,11 +19,11 @@ trait UpdateEntityOperationTrait
 
     /**
      * @param string $entityId
-     * @param IEntity $entity
-     * @return IEntity|null
+     * @param EntityInterface $entity
+     * @return EntityInterface|null
      * @throws ExceptionInterface|ApiException
      */
-    public function update(string $entityId, IEntity $entity): IEntity
+    public function update(string $entityId, EntityInterface $entity): EntityInterface
     {
         $path = (string) $this->getEntityPath("/$entityId");
         $data = $this->getSerializer()->normalize($entity, 'json');

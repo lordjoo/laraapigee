@@ -1,6 +1,6 @@
 <?php
 
-namespace Lordjoo\LaraApigee\Utility\Serializers\Normalizers;
+namespace Lordjoo\LaraApigee\Utility\Serializer\Normalizers;
 
 use Lordjoo\LaraApigee\Entities\Structure\AttributesProperty;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;

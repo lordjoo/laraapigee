@@ -28,4 +28,11 @@
             <directory suffix=".php">./src</directory>
         </include>
     </source>
+    <php>
+        <env name="APIGEE_ENDPOINT" value="" />
+        <env name="APIGEE_USERNAME" value="" />
+        <env name="APIGEE_PASSWORD" value="" />
+        <env name="APIGEE_ORGANIZATION" value="" />
+        <env name="APIGEE_MONETIZATION_ENDPOINT" value="" />
+    </php>
 </phpunit>

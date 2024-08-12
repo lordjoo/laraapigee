@@ -1,15 +1,15 @@
 <?php
 
-namespace Lordjoo\LaraApigee\Utility\Serializers;
+namespace Lordjoo\LaraApigee\Utility\Serializer;
 
-use ArrayObject;
+use \ArrayObject;
 use Exception;
-use Lordjoo\LaraApigee\Utility\Serializers\Denormalizers\AppCredentialsPropertyDenormalizer;
-use Lordjoo\LaraApigee\Utility\Serializers\Denormalizers\AttributesPropertyDenormalizer;
-use Lordjoo\LaraApigee\Utility\Serializers\Denormalizers\DateDenormalizer;
-use Lordjoo\LaraApigee\Utility\Serializers\Normalizers\AttributesPropertyNormalizer;
-use Lordjoo\LaraApigee\Utility\Serializers\Normalizers\DateNormalizer;
+use Lordjoo\LaraApigee\Utility\Serializer\Denormalizers\AttributesPropertyDenormalizer;
+use Lordjoo\LaraApigee\Utility\Serializer\Denormalizers\DateDenormalizer;
+use Lordjoo\LaraApigee\Utility\Serializer\Normalizers\AttributesPropertyNormalizer;
+use Lordjoo\LaraApigee\Utility\Serializer\Normalizers\DateNormalizer;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
+use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 
-class EntitySerializer implements IEntitySerializer
+class EntitySerializer implements EntitySerializerInterface
 {
     private Serializer $serializer;
 
@@ -27,7 +27,7 @@ class EntitySerializer implements IEntitySerializer
     /**
      * EntitySerializer constructor.
      *
-     * @param NormalizerInterface[]|DenormalizerInterface[] $normalizers
+     * @param NormalizerInterface[]|DenormalizerInterface[]|NameConverterInterface[] $normalizers
      */
     public function __construct(array $normalizers = [])
     {
@@ -146,6 +146,11 @@ class EntitySerializer implements IEntitySerializer
     public function jsonEncoder(): JsonEncoder
     {
         return new JsonEncoder(new JsonDecode());
+    }
+
+    public static function getEntityTypeSpecificNormalizers(): array
+    {
+        return [];
     }
 
 }

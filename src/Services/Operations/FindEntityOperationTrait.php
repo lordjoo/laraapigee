@@ -2,7 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Services\Operations;
 
-use Lordjoo\LaraApigee\Entities\IEntity;
+use Lordjoo\LaraApigee\Entities\EntityInterface;
 use Lordjoo\LaraApigee\Services\ClientAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
@@ -17,9 +17,9 @@ trait FindEntityOperationTrait
 
     /**
      * @param $entityId
-     * @return IEntity|null
+     * @return EntityInterface|null
      */
-    public function find($entityId): ?IEntity
+    public function find($entityId): ?EntityInterface
     {
         $path = (string) $this->getEntityPath("/$entityId");
         $response = $this->getClient()->get($path);

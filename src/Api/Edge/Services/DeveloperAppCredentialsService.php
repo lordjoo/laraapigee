@@ -2,6 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Contracts\DeveloperAppCredentialsServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\AppCredential;
 use Lordjoo\LaraApigee\Api\Edge\Entities\DeveloperApp;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
@@ -12,7 +13,7 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
-class DeveloperAppCredentialsService extends AppCredentialsService
+class DeveloperAppCredentialsService extends AppCredentialsService implements DeveloperAppCredentialsServiceInterface
 {
 
     protected string $developerId;

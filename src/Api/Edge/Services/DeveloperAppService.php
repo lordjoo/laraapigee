@@ -2,7 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
-use Lordjoo\LaraApigee\Api\Edge\Entities\Developer;
+use Lordjoo\LaraApigee\Api\Edge\Contracts\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\DeveloperApp;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
@@ -12,7 +12,7 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
-class DeveloperAppService extends BaseService
+class DeveloperAppService extends BaseService implements DeveloperAppServiceInterface
 {
     use Operations\CrudOperationsTrait,
         EntityEndpointAwareTrait,
@@ -21,9 +21,9 @@ class DeveloperAppService extends BaseService
     protected string $developerId;
 
     public function __construct(
-        HttpClient $httpClient,
+        HttpClient   $httpClient,
         ConfigDriver $config,
-        string $developerId
+        string       $developerId
     )
     {
         parent::__construct($httpClient, $config);

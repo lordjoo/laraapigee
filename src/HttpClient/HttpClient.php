@@ -12,8 +12,6 @@ use Lordjoo\LaraApigee\Exceptions\BadRequestException;
 use Lordjoo\LaraApigee\Exceptions\NotFoundException;
 use Lordjoo\LaraApigee\Exceptions\ServerErrorException;
 use Lordjoo\LaraApigee\HttpClient\Authenticators\AuthenticatorInterface;
-use Lordjoo\LaraApigee\HttpClient\Middlewares\ErrorHandlingMiddleware;
-use Lordjoo\LaraApigee\HttpClient\Middlewares\HistoryMiddleware;
 
 
 /**
@@ -93,7 +91,6 @@ class HttpClient
         if ($statusCode >= 400 && $statusCode < 500)
             throw new BadRequestException(null, $e->getRequest(), $e->getResponse(), $e);
         if ($statusCode >= 500)
-            dd($e->getRequest(),$e->getRequest()->getBody()->getContents(),$e->getResponse()->getBody()->getContents());
             throw new ServerErrorException(null, $e->getRequest(), $e->getResponse(), $e);
         throw $e;
     }

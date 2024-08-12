@@ -4,6 +4,7 @@ namespace Lordjoo\LaraApigee;
 
 use Lordjoo\LaraApigee\Api\ApigeeX\ApigeeX;
 use Lordjoo\LaraApigee\Api\Edge\Edge;
+use Lordjoo\LaraApigee\Api\Monetization\Monetization;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 
 class LaraApigee
@@ -29,6 +30,11 @@ class LaraApigee
     public function apigeeX(): ApigeeX
     {
         return new ApigeeX($this->config);
+    }
+
+    public function monetization(): Monetization
+    {
+        return new Monetization($this->config);
     }
 
     /**

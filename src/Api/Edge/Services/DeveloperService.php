@@ -21,7 +21,7 @@ class DeveloperService extends BaseService implements  DeveloperServiceInterface
      *
      * @param string $email
      * @param string $status 'active' or 'inactive'
-     * @return \Lordjoo\LaraApigee\Entities\IEntity|null
+     * @return \Lordjoo\LaraApigee\Entities\EntityInterface|null
      */
     public function setStatus(string $email, string $status)
     {

@@ -10,7 +10,7 @@ use Lordjoo\LaraApigee\Entities\Properties\DisplayNamePropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\NamePropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\StatusPropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Structure\AttributesProperty;
-use Lordjoo\LaraApigee\Utility\Serializers\EntitySerializer;
+use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializer;
 
 class App extends BaseEntity
 {

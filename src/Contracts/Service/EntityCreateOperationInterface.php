@@ -2,7 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Contracts\Service;
 
-use Lordjoo\LaraApigee\Entities\IEntity;
+use Lordjoo\LaraApigee\Entities\EntityInterface;
 
 interface EntityCreateOperationInterface
 {
@@ -10,10 +10,10 @@ interface EntityCreateOperationInterface
     /**
      * Create a new entity
      *
-     * @param IEntity $entity
-     * @return IEntity
+     * @param EntityInterface $entity
+     * @return EntityInterface
      *
      * @throws \Lordjoo\LaraApigee\Exceptions\ApiException
      */
-    public function create(IEntity $entity): IEntity;
+    public function create(EntityInterface $entity): EntityInterface;
 }

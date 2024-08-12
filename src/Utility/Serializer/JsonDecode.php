@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Lordjoo\LaraApigee\Utility\Serializers;
+namespace Lordjoo\LaraApigee\Utility\Serializer;
 
 use Symfony\Component\Serializer\Encoder\JsonDecode as BaseJsonDecode;
 

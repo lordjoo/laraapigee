@@ -2,7 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Contracts\Service;
 
-use Lordjoo\LaraApigee\Entities\IEntity;
+use Lordjoo\LaraApigee\Entities\EntityInterface;
 
 interface EntityUpdateOperationInterface
 {
@@ -10,9 +10,9 @@ interface EntityUpdateOperationInterface
      * Update an entity.
      *
      * @param string $entityId
-     * @param IEntity $entity
-     * @return IEntity
+     * @param EntityInterface $entity
+     * @return EntityInterface
      * @throws \Lordjoo\LaraApigee\Exceptions\ApiException
      */
-    public function update(string $entityId, IEntity $entity): IEntity;
+    public function update(string $entityId, EntityInterface $entity): EntityInterface;
 }

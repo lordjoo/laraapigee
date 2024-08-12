@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Lordjoo\LaraApigee\Utility\Serializers;
+namespace Lordjoo\LaraApigee\Utility\Serializer;
 
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Encoder\JsonEncoder as BaseJsonEncoder;
@@ -33,7 +33,7 @@ final class JsonEncoder extends BaseJsonEncoder
      *
      * The encoder implementation is intentionally not swappable.
      *
-     * @param \Apigee\Edge\Serializer\JsonDecode|null $decodingImpl
+     * @param JsonDecode|null $decodingImpl
      */
     public function __construct(JsonDecode $decodingImpl = null)
     {

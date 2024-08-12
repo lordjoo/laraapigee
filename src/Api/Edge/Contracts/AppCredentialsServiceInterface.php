@@ -12,7 +12,7 @@ interface AppCredentialsServiceInterface extends EntityServiceInterface
 
     public function load(string $consumerKey): AppCredential;
 
-    public function delete(string $consumerKey): void;
+    public function delete(string $consumerKey): bool;
 
     public function generate(
         array              $apiProducts,

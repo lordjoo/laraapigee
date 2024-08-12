@@ -4,7 +4,8 @@ namespace Lordjoo\LaraApigee\Services;
 
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
-use Lordjoo\LaraApigee\Utility\Serializers\EntitySerializer;
+use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializer;
+use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializerInterface;
 
 abstract class BaseService
 {
@@ -31,9 +32,9 @@ abstract class BaseService
     /**
      * @return EntitySerializer
      */
-    protected function getSerializer(): EntitySerializer
+    protected function getSerializer(): EntitySerializerInterface
     {
-        return app(EntitySerializer::class);
+        return new EntitySerializer();
     }
 
 }

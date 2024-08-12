@@ -2,7 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Services\Operations;
 
-use Lordjoo\LaraApigee\Entities\IEntity;
+use Lordjoo\LaraApigee\Entities\EntityInterface;
 use Lordjoo\LaraApigee\Services\ClientAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
@@ -14,7 +14,7 @@ trait LoadEntityOperationTrait
         EntityClassAwareTrait;
 
     /**
-     * @return IEntity[]
+     * @return EntityInterface[]
      * @throws \Exception|\Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function get(): array

@@ -2,7 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Entities;
 
-interface IEntity
+interface EntityInterface
 {
 
 }

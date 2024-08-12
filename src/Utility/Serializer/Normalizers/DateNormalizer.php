@@ -1,6 +1,6 @@
 <?php
 
-namespace Lordjoo\LaraApigee\Utility\Serializers\Normalizers;
+namespace Lordjoo\LaraApigee\Utility\Serializer\Normalizers;
 
 use Carbon\Carbon;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;

@@ -43,7 +43,6 @@ return [
      * NOTE: if you are using the ConfigFileDriver, you should set the monetization endpoint in the config file
      */
     'monetization' => [
-        'enabled' => env('APIGEE_MONETIZATION_ENABLED', false),
         'endpoint' => env('APIGEE_MONETIZATION_ENDPOINT', 'https://api.enterprise.apigee.com/v1/mint/organizations'),
     ],
 
@@ -72,10 +71,4 @@ return [
      */
     "key_file" => storage_path('app/service_account_key.json'),
 
-
-    /**
-     * Extra Normalizers and Denormalizers to be used by the
-     * entity serializer
-     */
-    "normalizers" => [],
 ];

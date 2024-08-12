@@ -4,7 +4,7 @@ namespace Lordjoo\LaraApigee\Entities;
 
 use Lordjoo\LaraApigee\Entities\Structure\BaseObject;
 
-abstract class BaseEntity extends BaseObject implements IEntity
+abstract class BaseEntity extends BaseObject implements EntityInterface
 {
 
     /**
