@@ -35,7 +35,8 @@ class URLTemplate
         foreach ($this->params as $key => $value) {
             $url = str_replace('{' . $key . '}', rawurlencode($value), $url);
         }
-        return $url;
+        // remove trailing slashes
+        return rtrim($url, '/');
     }
 
     /**

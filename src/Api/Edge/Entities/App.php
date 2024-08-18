@@ -2,11 +2,11 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Entities;
 
+use LogicException;
 use Lordjoo\LaraApigee\Entities\BaseEntity;
 use Lordjoo\LaraApigee\Entities\Properties\AttributesPropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\CommonEntityPropertiesAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\DescriptionPropertyAwareTrait;
-use Lordjoo\LaraApigee\Entities\Properties\DisplayNamePropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\NamePropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\StatusPropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Structure\AttributesProperty;
@@ -105,7 +105,7 @@ class App extends BaseEntity
         if (!$this->appId) {
             $this->initialApiProducts = $initialApiProducts;
         } else {
-            throw new \LogicException('This method is only supported for creating a new app.');
+            throw new LogicException('This method is only supported for creating a new app.');
         }
         return $this;
     }

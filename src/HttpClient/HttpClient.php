@@ -30,14 +30,14 @@ class HttpClient
     /**
      * @var AuthenticatorInterface
      */
-    protected AuthenticatorInterface $authenticator;
+    protected ?AuthenticatorInterface $authenticator = null;
 
     /**
      * @var Client
      */
     protected Client $client;
 
-    public function __construct(string $baseUrl, AuthenticatorInterface $authenticator)
+    public function __construct(string $baseUrl, ?AuthenticatorInterface $authenticator = null)
     {
         $this->baseUrl = $baseUrl;
         $this->authenticator = $authenticator;
@@ -47,10 +47,12 @@ class HttpClient
     protected function initClient(): void
     {
         $stack = HandlerStack::create();
+
         // set up the authenticator middleware
         $stack->push(function (callable $handler) {
             return function ($request, array $options) use ($handler) {
-                $request = $request->withHeader("Authorization", $this->authenticator->getAuthHeader());
+                if ($this->authenticator)
+                    $request = $request->withHeader("Authorization", $this->authenticator->getAuthHeader());
                 return $handler($request, $options);
             };
         });
