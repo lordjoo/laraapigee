@@ -32,7 +32,7 @@ class AttributesPropertyDenormalizer implements DenormalizerInterface
         if (str_ends_with($type, '[]')) {
             return false;
         }
-        return AttributesProperty::class === $type || $type instanceof AttributesProperty;
+        return AttributesProperty::class === $type;
     }
 
     public function getSupportedTypes(?string $format): array
