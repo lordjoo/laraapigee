@@ -2,6 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Api\ApigeeX;
 
+use Lordjoo\LaraApigee\Api\ApigeeX\Services\ApiProductService;
 use Lordjoo\LaraApigee\Api\ApigeeX\Services\DeveloperAppService;
 use Lordjoo\LaraApigee\Api\ApigeeX\Services\DeveloperService;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
@@ -20,12 +21,19 @@ class ApigeeX
         $keyFile = file_get_contents($this->config->getKeyFile());
         $keyFile = json_decode($keyFile, true);
         $authenticator = new Oauth($keyFile['client_email'], $keyFile['private_key']);
-        $this->httpClient = new HttpClient($config->getEndpoint(), $authenticator);
+        $this->httpClient = new HttpClient(
+            $config->getEndpoint().'/organizations/'.$config->getOrganization().'/',
+            $authenticator);
     }
 
     public function getHttpClient(): HttpClient
     {
         return $this->httpClient;
+    }
+
+    public function apiProducts(): ApiProductService
+    {
+        return new ApiProductService($this->httpClient, $this->config);
     }
 
     public function developers(): DeveloperService
@@ -37,6 +45,8 @@ class ApigeeX
     {
         return new DeveloperAppService($this->httpClient, $this->config, $developerId);
     }
+
+
 
 
 }
