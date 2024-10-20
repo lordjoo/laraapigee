@@ -2,8 +2,8 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
-use Lordjoo\LaraApigee\Api\Edge\Contracts\CompanyServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\Company;
+use Lordjoo\LaraApigee\Contracts\Services\CompanyServiceInterface;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
