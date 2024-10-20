@@ -6,6 +6,7 @@ use Lordjoo\LaraApigee\Entities\BaseEntity;
 use Lordjoo\LaraApigee\Entities\Properties\AttributesPropertyAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\CommonEntityPropertiesAwareTrait;
 use Lordjoo\LaraApigee\Entities\Properties\StatusPropertyAwareTrait;
+use Symfony\Component\Serializer\Attribute\Ignore;
 
 class Developer extends BaseEntity
 {
@@ -86,7 +87,7 @@ class Developer extends BaseEntity
         return $this;
     }
 
-    public function getOriginalEmail(): string
+    public function originalEmail(): string
     {
         return $this->originalEmail;
     }

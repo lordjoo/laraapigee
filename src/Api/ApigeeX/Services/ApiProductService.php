@@ -2,10 +2,10 @@
 
 namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
-use Lordjoo\LaraApigee\Api\ApigeeX\Contracts\ApiProductServiceInterface;
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\ApiProduct;
 use Lordjoo\LaraApigee\Api\ApigeeX\Utility\Serializer\Denormalizers\OperationConfigPropertyDenormalizer;
 use Lordjoo\LaraApigee\Api\ApigeeX\Utility\Serializer\Denormalizers\OperationGroupPropertyDenormalizer;
+use Lordjoo\LaraApigee\Contracts\Services\ApiProductServiceInterface;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;

@@ -2,12 +2,11 @@
 
 namespace Lordjoo\LaraApigee\Api\ApigeeX;
 
-use Lordjoo\LaraApigee\Api\ApigeeX\Services\ApiProductService;
-use Lordjoo\LaraApigee\Api\ApigeeX\Services\DeveloperAppService;
-use Lordjoo\LaraApigee\Api\ApigeeX\Services\DeveloperService;
+use Lordjoo\LaraApigee\Contracts;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 use Lordjoo\LaraApigee\HttpClient\Authenticators\Oauth;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
+use Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
 class ApigeeX
 {
@@ -31,19 +30,19 @@ class ApigeeX
         return $this->httpClient;
     }
 
-    public function apiProducts(): ApiProductService
+    public function apiProducts(): Contracts\Services\ApiProductServiceInterface
     {
-        return new ApiProductService($this->httpClient, $this->config);
+        return new Services\ApiProductService($this->httpClient, $this->config);
     }
 
-    public function developers(): DeveloperService
+    public function developers(): Contracts\Services\DeveloperServiceInterface
     {
-        return new DeveloperService($this->httpClient, $this->config);
+        return new Services\DeveloperService($this->httpClient, $this->config);
     }
 
-    public function developerApps(string $developerId): DeveloperAppService
+    public function developerApps(string $developerId): Contracts\Services\DeveloperAppServiceInterface
     {
-        return new DeveloperAppService($this->httpClient, $this->config, $developerId);
+        return new Services\DeveloperAppService($this->httpClient, $this->config, $developerId);
     }
 
 
