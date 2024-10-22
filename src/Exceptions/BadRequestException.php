@@ -15,7 +15,7 @@ class BadRequestException extends ApiException
         array $handlerContext = []
     ) {
         $error = $this->parseErrorResponse($response);
-        $message = $message ?? $error['message'] ?? 'Bad Request to '. $request->getUri();
+        $message = $message ?? $error['message'] ?? 'Bad Request to ['. $request->getMethod() .'] '. $request->getUri();
         parent::__construct($message, $request, $response, $previous, $handlerContext);
     }
 }
