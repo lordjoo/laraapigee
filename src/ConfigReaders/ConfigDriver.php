@@ -31,6 +31,7 @@ abstract class ConfigDriver
     abstract public function getMonetizationEndpoint(): string;
 
     abstract public function getKeyFile(): string;
+
     abstract public function get(string $key): string;
 
 
