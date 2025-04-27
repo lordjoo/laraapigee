@@ -1,9 +1,8 @@
 <?php
 
-namespace Lordjoo\LaraApigee\Api\Edge\Contracts;
+namespace Lordjoo\LaraApigee\Contracts\Services;
 
 use Lordjoo\LaraApigee\Api\Edge\Entities\AppCredential;
-use Lordjoo\LaraApigee\Contracts\Service\EntityServiceInterface;
 
 interface AppCredentialsServiceInterface extends EntityServiceInterface
 {

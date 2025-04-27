@@ -1,6 +1,6 @@
 <?php
 
-namespace Lordjoo\LaraApigee\Api\Edge\Contracts;
+namespace Lordjoo\LaraApigee\Contracts\Services;
 
 interface DeveloperAppCredentialsServiceInterface extends AppCredentialsServiceInterface
 {

@@ -1,9 +1,6 @@
 <?php
 
-namespace Lordjoo\LaraApigee\Api\Edge\Contracts;
-
-use Lordjoo\LaraApigee\Contracts\Service\EntityCrudServiceInterface;
-use Lordjoo\LaraApigee\Contracts\Service\EntityServiceInterface;
+namespace Lordjoo\LaraApigee\Contracts\Services;
 
 interface CompanyServiceInterface extends
     EntityServiceInterface,

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lordjoo\LaraApigee\Contracts\Service;
+namespace Lordjoo\LaraApigee\Contracts\Services;
 
 interface EntityCrudServiceInterface extends
     EntityCreateOperationInterface,
