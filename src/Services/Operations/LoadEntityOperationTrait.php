@@ -13,6 +13,23 @@ trait LoadEntityOperationTrait
         EntityEndpointAwareTrait,
         EntityClassAwareTrait;
 
+    protected function serializeList(array $content)
+    {
+        if (!is_array(reset($content))) {
+            return $content;
+        }
+
+        $content = reset($content);
+
+        if ([] === $content) {
+            return [];
+        }
+
+        return array_map(function ($value) {
+            return $this->getSerializer()->denormalize($value, $this->getEntityClass());
+        }, $content);
+    }
+
     /**
      * @return EntityInterface[]
      * @throws \Exception|\Symfony\Component\Serializer\Exception\ExceptionInterface
@@ -21,28 +38,17 @@ trait LoadEntityOperationTrait
     {
         $path = (string) $this->getEntityPath();
         $response = $this->getClient()->get($path, [
-            "query" => [
-                "expand" => "true"
+            'query' => [
+                'expand' => true,
             ]
         ]);
 
         $content = $response->getBody()->getContents();
         $content = json_decode($content, true);
-        if (!is_array(reset($content))) {
-            return $content;
-        }
-        $content = reset($content);
 
-
-        if ([] === $content) {
-            return [];
-        }
-        $res = [];
-        foreach ($content as $key => $value) {
-            $res[$key] = $this->getSerializer()->denormalize($value, $this->getEntityClass());
-        }
-
-        return $res;
+        return $this->serializeList($content);
     }
+
+
 
 }

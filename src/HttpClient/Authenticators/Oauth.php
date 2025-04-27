@@ -4,7 +4,9 @@ namespace Lordjoo\LaraApigee\HttpClient\Authenticators;
 
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
+use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Support\Facades\Cache;
+use Lordjoo\LaraApigee\HttpClient\StaticCache;
 
 class Oauth implements AuthenticatorInterface
 {
@@ -43,6 +45,7 @@ class Oauth implements AuthenticatorInterface
     ) {
         $this->clientEmail = $clientEmail;
         $this->privateKey = $privateKey;
+        $this->cacheManager();
     }
 
     public function getAccessToken(): string
@@ -78,19 +81,17 @@ class Oauth implements AuthenticatorInterface
 
             $response = json_decode($response->getBody()->getContents(), true);
 
-            Cache::put('apigee_access_token', $response['access_token'], $response['expires_in']);
+            $this->cacheManager()->put('apigee_access_token', $response['access_token'], $response['expires_in']);
 
             return $response['access_token'];
         } catch (\Exception $e) {
             throw new \RuntimeException('Failed to get access token: ' . $e->getMessage());
         }
-
-
     }
 
     public function getAuthHeader(): string
     {
-        $cached = Cache::get('apigee_access_token');
+        $cached = $this->cacheManager()->get('apigee_access_token');
         if ($cached) {
             return 'Bearer ' . $cached;
         }
@@ -107,4 +108,13 @@ class Oauth implements AuthenticatorInterface
         ]);
     }
 
+
+    protected function cacheManager(): Repository
+    {
+        try {
+            return Cache::store();
+        } catch (\Exception $e) {
+            return new StaticCache();
+        }
+    }
 }

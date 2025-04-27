@@ -2,9 +2,9 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
-use Lordjoo\LaraApigee\Api\Edge\Contracts\AppCredentialsServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\AppCredential;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
+use Lordjoo\LaraApigee\Contracts\Services\AppCredentialsServiceInterface;
 use Lordjoo\LaraApigee\Entities\Structure\AttributesProperty;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Services\BaseService;

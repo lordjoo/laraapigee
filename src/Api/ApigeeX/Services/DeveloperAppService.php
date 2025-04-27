@@ -4,6 +4,7 @@ namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\DeveloperApp;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
+use Lordjoo\LaraApigee\Contracts\Services\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
@@ -11,7 +12,7 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
-class DeveloperAppService extends BaseService
+class DeveloperAppService extends BaseService implements DeveloperAppServiceInterface
 {
     use Operations\CrudOperationsTrait,
         EntityEndpointAwareTrait,
