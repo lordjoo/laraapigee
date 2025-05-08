@@ -65,4 +65,9 @@ class Edge
     {
         return new Services\EnvironmentService($this->httpClient, $this->config);
     }
+
+    public function keyValueMap(string $environment): Contracts\KeyValueMapServiceInterface
+    {
+        return new Services\KeyValueMapService($this->httpClient, $this->config, $environment);
+    }
 }
