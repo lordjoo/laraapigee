@@ -2,6 +2,7 @@
 
 namespace Lordjoo\LaraApigee\Services\Operations;
 
+use Illuminate\Support\Collection;
 use Lordjoo\LaraApigee\Entities\EntityInterface;
 use Lordjoo\LaraApigee\Services\ClientAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
@@ -25,7 +26,7 @@ trait LoadEntityOperationTrait
             return [];
         }
 
-        return array_map(function ($value) {
+        return collect($content)->map(function ($value) {
             return $this->getSerializer()->denormalize($value, $this->getEntityClass());
         }, $content);
     }
@@ -34,13 +35,13 @@ trait LoadEntityOperationTrait
      * @return EntityInterface[]
      * @throws \Exception|\Symfony\Component\Serializer\Exception\ExceptionInterface
      */
-    public function get(): array
+    public function get($query = []): Collection
     {
         $path = (string) $this->getEntityPath();
         $response = $this->getClient()->get($path, [
-            'query' => [
-                'expand' => true,
-            ]
+            'query' => array_merge([
+                'expand' => "true",
+            ], $query),
         ]);
 
         $content = $response->getBody()->getContents();

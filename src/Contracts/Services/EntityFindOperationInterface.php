@@ -2,16 +2,15 @@
 
 namespace Lordjoo\LaraApigee\Contracts\Services;
 
-use Illuminate\Support\Collection;
 use Lordjoo\LaraApigee\Entities\EntityInterface;
 
-interface EntityReadOperationInterface
+interface EntityFindOperationInterface
 {
     /**
-     * @return EntityInterface[]
+     * @return EntityInterface
      * @throws \Lordjoo\LaraApigee\Exceptions\ApiException
      */
-    public function get(): Collection;
+    public function find($entityId): ?EntityInterface;
 
 
 }
