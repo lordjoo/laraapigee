@@ -40,6 +40,11 @@ class ApigeeX
         return new Services\DeveloperService($this->httpClient, $this->config);
     }
 
+    public function apps(): Contracts\Services\AppServiceInterface
+    {
+        return new Services\AppService($this->httpClient, $this->config);
+    }
+
     public function developerApps(string $developerId): Contracts\Services\DeveloperAppServiceInterface
     {
         return new Services\DeveloperAppService($this->httpClient, $this->config, $developerId);
