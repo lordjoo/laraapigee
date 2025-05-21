@@ -30,6 +30,11 @@ class ApigeeX
         return $this->httpClient;
     }
 
+    public function proxies()
+    {
+        return new Services\ProxyService($this->httpClient, $this->config);
+    }
+
     public function apiProducts(): Contracts\Services\ApiProductServiceInterface
     {
         return new Services\ApiProductService($this->httpClient, $this->config);
