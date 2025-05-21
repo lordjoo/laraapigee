@@ -12,13 +12,15 @@ class ClearAppPropertiesNormalizer implements NormalizerInterface
     {
         $ignore = [
             'description',
-            'initialApiProducts',
             'displayName',
         ];
         $array = $object->toArray();
-        $array = array_diff_key($array, array_flip($ignore));
+        if (isset($array['initialApiProducts']) &&
+            is_array($array['initialApiProducts']) &&
+            count($array['initialApiProducts']) > 0
+        ) $ignore[] = 'initialApiProducts';
 
-        return $array;
+        return array_diff_key($array, array_flip($ignore));
     }
 
 
