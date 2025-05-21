@@ -2,7 +2,6 @@
 
 namespace Lordjoo\LaraApigee\Contracts\Services;
 
-use Illuminate\Support\Collection;
 use Lordjoo\LaraApigee\Entities\EntityInterface;
 
 interface EntityReadOperationInterface
@@ -11,7 +10,7 @@ interface EntityReadOperationInterface
      * @return EntityInterface[]
      * @throws \Lordjoo\LaraApigee\Exceptions\ApiException
      */
-    public function get(): Collection;
+    public function get(): array;
 
 
 }

@@ -6,8 +6,7 @@ interface EntityCrudServiceInterface extends
     EntityCreateOperationInterface,
     EntityReadOperationInterface,
     EntityUpdateOperationInterface,
-    EntityDeleteOperationInterface,
-    EntityFindOperationInterface
+    EntityDeleteOperationInterface
 {
 
 }
