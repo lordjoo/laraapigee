@@ -112,7 +112,7 @@ class App extends BaseEntity
 
     public function getDisplayName(): ?string
     {
-        return $this->getAttributeValue('DisplayName');
+        return $this->getAttributeValue('DisplayName') ?: $this->getName();
     }
 
     /**
@@ -130,6 +130,4 @@ class App extends BaseEntity
     {
         return $this->initialApiProducts;
     }
-
-
 }

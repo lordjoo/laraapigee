@@ -41,6 +41,17 @@ class AttributesProperty extends BaseObject
     }
 
     /**
+     * Get the value of a key.
+     * @param string $key
+     * @return string|null
+     */
+    public function get(string $key): ?string
+    {
+        return $this->getValue($key);
+    }
+
+
+    /**
      * @param string $key
      * @param $value
      * @return void
