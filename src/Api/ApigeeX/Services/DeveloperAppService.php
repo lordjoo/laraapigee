@@ -3,7 +3,6 @@
 namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\DeveloperApp;
-use Lordjoo\LaraApigee\Api\ApigeeX\Utility\Serializer\Normalizers\ClearAppPropertiesNormalizer;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 use Lordjoo\LaraApigee\Contracts\Services\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
@@ -11,8 +10,6 @@ use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
-use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializer;
-use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializerInterface;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
 class DeveloperAppService extends BaseService implements DeveloperAppServiceInterface
@@ -44,12 +41,4 @@ class DeveloperAppService extends BaseService implements DeveloperAppServiceInte
     {
         return DeveloperApp::class;
     }
-
-    protected function getSerializer(): EntitySerializerInterface
-    {
-        return new EntitySerializer([
-           new ClearAppPropertiesNormalizer()
-        ]);
-    }
-
 }
