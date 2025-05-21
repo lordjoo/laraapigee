@@ -2,6 +2,7 @@
 
 namespace Lordjoo\LaraApigee;
 
+use Illuminate\Support\Collection;
 use Lordjoo\LaraApigee\Api\ApigeeX\ApigeeX;
 use Lordjoo\LaraApigee\Api\Edge\Edge;
 use Spatie\LaravelPackageTools\Package;
@@ -33,6 +34,29 @@ class LaraApigeeServiceProvider extends PackageServiceProvider
 
         $this->app->singleton(LaraApigee::class, fn() => new LaraApigee($this->app->make(ConfigReaders\ConfigDriver::class)));
         $this->app->alias(LaraApigee::class, 'lara-apigee');
+
+
+        // todo: added to docs `whereApigeeAttribute(...)` method to Collection
+        Collection::macro('whereApigeeAttribute', function (string $attribute, $op = null, mixed $value = null){
+            $value = $value ?: $op;
+
+            return $this->filter(function ($item) use ($attribute, $op, $value) {
+                if ($item->attributes->get($attribute) === null) {
+                    return false;
+                }
+
+                return match ($op) {
+                    '!=' => $item->attributes->get($attribute) != $value,
+                    '>' => $item->attributes->get($attribute) > $value,
+                    '<' => $item->attributes->get($attribute) < $value,
+                    '>=' => $item->attributes->get($attribute) >= $value,
+                    '<=' => $item->attributes->get($attribute) <= $value,
+                    default => $item->attributes->get($attribute) == $value,
+                };
+
+            });
+        });
+
     }
 
 }
