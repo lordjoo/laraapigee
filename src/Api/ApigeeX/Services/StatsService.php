@@ -30,13 +30,15 @@ class StatsService extends BaseService implements StatsServiceInterface
     }
 
     /**
+     * Get traffic data for the given dimensions and metrics.
+     *
      * @param array $dimensions
      * @param array $metrics
      * @param Carbon[] $timeRange
      * @param string|null $filter
      * @return Collection
      */
-    public function traffic(array $dimensions, array $metrics, array $timeRange, string $filter = null): Collection
+    public function traffic(array $dimensions, array $metrics, array $timeRange, string $filter = null,array $options = []): Collection
     {
         if (count($timeRange) > 2) {
             throw new \InvalidArgumentException('Time range must be an array of 2 Carbon instances.');
@@ -59,11 +61,12 @@ class StatsService extends BaseService implements StatsServiceInterface
                 'timeRange' => $timeRange,
                 'sortby' => implode(',', $metrics),
                 'filter' => $filter,
+                ...$options
             ]
         ]);
 
         $data = json_decode($response->getBody(), true);
 
-        return collect($data['environments'][0]['dimensions']);
+        return collect($data['environments'][0]['dimensions'] ?? []);
     }
 }
