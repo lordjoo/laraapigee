@@ -45,7 +45,8 @@ class ApigeeX
         return new Services\DeveloperAppService($this->httpClient, $this->config, $developerId);
     }
 
-
-
-
+    public function stats(string $environment): Contracts\Services\StatsServiceInterface
+    {
+        return new Services\StatsService($this->httpClient, $this->config, $environment);
+    }
 }
