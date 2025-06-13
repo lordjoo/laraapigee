@@ -55,6 +55,11 @@ class ApigeeX
         return new Services\DeveloperAppService($this->httpClient, $this->config, $developerId);
     }
 
+    public function developerAppCredentials(string $developerId, string $appName): Contracts\Services\DeveloperAppCredentialsServiceInterface
+    {
+        return new Services\DeveloperAppCredentialService($this->httpClient, $this->config, $developerId, $appName);
+    }
+
     public function stats(string $environment): Contracts\Services\StatsServiceInterface
     {
         return new Services\StatsService($this->httpClient, $this->config, $environment);
