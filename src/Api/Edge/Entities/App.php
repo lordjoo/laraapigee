@@ -71,7 +71,7 @@ class App extends BaseEntity
         return $this;
     }
 
-    public function getCallbackUrl(): string
+    public function getCallbackUrl(): ?string
     {
         return $this->callbackUrl;
     }
