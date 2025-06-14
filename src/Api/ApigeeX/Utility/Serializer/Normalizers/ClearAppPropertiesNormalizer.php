@@ -17,7 +17,7 @@ class ClearAppPropertiesNormalizer implements NormalizerInterface
         $array = $object->toArray();
         if (isset($array['initialApiProducts']) &&
             is_array($array['initialApiProducts']) &&
-            count($array['initialApiProducts']) > 0
+            count($array['initialApiProducts']) == 0
         ) $ignore[] = 'initialApiProducts';
 
         return array_diff_key($array, array_flip($ignore));
