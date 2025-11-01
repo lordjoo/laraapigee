@@ -34,5 +34,7 @@ abstract class ConfigDriver
 
     abstract public function get(string $key): string;
 
+    abstract public function getMonetizationPlatform(): string;
+
 
 }
