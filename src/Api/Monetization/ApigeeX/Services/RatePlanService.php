@@ -60,7 +60,6 @@ class RatePlanService extends BaseService implements RatePlanServiceInterface
     public function create(EntityInterface $entity): EntityInterface
     {
         $this->ensureRatePlanMetadata($entity);
-
         return $this->traitCreate($entity);
     }
 

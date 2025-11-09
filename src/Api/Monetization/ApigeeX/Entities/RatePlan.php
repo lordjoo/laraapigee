@@ -293,4 +293,16 @@ class RatePlan extends BaseEntity
 
         return $this;
     }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
 }
