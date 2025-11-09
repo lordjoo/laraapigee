@@ -30,28 +30,6 @@ class DeveloperAppService extends BaseService implements DeveloperAppServiceInte
         $this->developerId = $developerId;
     }
 
-    public function approve(string $appId): bool
-    {
-        $url = $this->getEntityPath($appId)->appendQuery('action=approve')->getURL();
-        $response = $this->httpClient->post($url,[
-            'headers' => [
-                'Content-Type' => 'application/octet-stream',
-            ],
-        ]);
-        return $response->getStatusCode() === 200;
-    }
-
-    public function revoke(string $appId): bool
-    {
-        $url = $this->getEntityPath($appId)->appendQuery('action=revoke')->getURL();
-        $response = $this->httpClient->post($url,[
-            'headers' => [
-                'Content-Type' => 'application/octet-stream',
-            ],
-        ]);
-        return $response->getStatusCode() === 200;
-    }
-
     protected function getEntityPath(?string $path = null): URLTemplate
     {
         return (new URLTemplate('developers/{developerId}/apps/'))

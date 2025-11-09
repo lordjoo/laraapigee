@@ -43,9 +43,7 @@ return [
      * NOTE: if you are using the ConfigFileDriver, you should set the monetization endpoint in the config file
      */
     'monetization' => [
-        'enabled' => (bool) env('APIGEE_MONETIZATION_ENABLED', false),
-        'platform' => env('APIGEE_MONETIZATION_PLATFORM', 'edge'),
-        'endpoint' => env('APIGEE_MONETIZATION_ENDPOINT', 'https://api.enterprise.apigee.com/v1/mint'),
+        'endpoint' => env('APIGEE_MONETIZATION_ENDPOINT', 'https://api.enterprise.apigee.com/v1/mint/organizations'),
     ],
 
     // Only When using the ConfigDBDriver you should set the following values
@@ -59,7 +57,6 @@ return [
             'monetization' => [
                 'enabled' => 'monetization_enabled',
                 'endpoint' => 'monetization_endpoint',
-                'platform' => 'monetization_platform',
             ],
         ],
     ],

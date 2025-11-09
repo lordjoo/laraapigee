@@ -11,7 +11,6 @@ class ConfigStaticDriver extends ConfigDriver
     protected bool $monetizationEnabled;
     protected string $monetizationEndpoint; // added this field!
     protected string $keyFile;
-    protected string $monetizationPlatform = 'edge';
 
     // Getters
     public function getOrganization(): string
@@ -44,11 +43,6 @@ class ConfigStaticDriver extends ConfigDriver
         return $this->monetizationEndpoint;
     }
 
-    public function getMonetizationPlatform(): string
-    {
-        return $this->monetizationPlatform;
-    }
-
     public function getKeyFile(): string
     {
         return $this->keyFile;
@@ -63,7 +57,6 @@ class ConfigStaticDriver extends ConfigDriver
             'password' => $this->getPassword(),
             'monetizationEnabled' => $this->getMonetizationEnabled() ? 'true' : 'false',
             'monetizationEndpoint' => $this->getMonetizationEndpoint(),
-            'monetizationPlatform' => $this->getMonetizationPlatform(),
             'keyFile' => $this->getKeyFile(),
             default => throw new \InvalidArgumentException("Invalid key: $key"),
         };
@@ -103,12 +96,6 @@ class ConfigStaticDriver extends ConfigDriver
     public function setMonetizationEndpoint(string $monetizationEndpoint): self
     {
         $this->monetizationEndpoint = $monetizationEndpoint;
-        return $this;
-    }
-
-    public function setMonetizationPlatform(string $monetizationPlatform): self
-    {
-        $this->monetizationPlatform = $monetizationPlatform;
         return $this;
     }
 

@@ -68,17 +68,6 @@ class ConfigDBDriver extends ConfigDriver
         return $this->data[$col];
     }
 
-    public function getMonetizationPlatform(): string
-    {
-        $col = config('apigee.db.columns.monetization.platform');
-
-        if ($col === null || !array_key_exists($col, $this->data)) {
-            return 'edge';
-        }
-
-        return $this->data[$col] ?: 'edge';
-    }
-
     public function getKeyFile(): string
     {
         $col = config('apigee.db.columns.key_file');

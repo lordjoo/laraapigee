@@ -16,10 +16,6 @@ trait LoadEntityOperationTrait
 
     protected function serializeList(array $content)
     {
-        if ([] === $content) {
-            return collect();
-        }
-
         if (!is_array(reset($content))) {
             return $content;
         }
@@ -27,7 +23,7 @@ trait LoadEntityOperationTrait
         $content = reset($content);
 
         if ([] === $content) {
-            return collect();
+            return [];
         }
 
         return collect($content)->map(function ($value) {

@@ -126,7 +126,7 @@ class App extends BaseEntity
         return $this;
     }
 
-    public function getApiProducts(): array
+    final public function getApiProducts(): array
     {
         return $this->initialApiProducts;
     }
