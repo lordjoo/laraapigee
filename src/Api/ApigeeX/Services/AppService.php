@@ -4,7 +4,6 @@ namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\App;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
-use Lordjoo\LaraApigee\Contracts\Services\AppServiceInterface;
 use Lordjoo\LaraApigee\Contracts\Services\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\Entities\EntityInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
@@ -14,7 +13,7 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
-class AppService extends BaseService implements AppServiceInterface
+class AppService extends BaseService implements DeveloperAppServiceInterface
 {
     use Operations\CrudOperationsTrait,
         EntityEndpointAwareTrait,
@@ -49,7 +48,7 @@ class AppService extends BaseService implements AppServiceInterface
         throw new \BadMethodCallException('This operation is Not supported');
     }
 
-    public function delete(string $entityId): bool
+    public function delete(string $identifier): bool
     {
         throw new \BadMethodCallException('This operation is Not supported');
     }
