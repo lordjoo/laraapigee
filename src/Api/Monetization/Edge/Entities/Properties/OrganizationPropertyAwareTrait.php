@@ -16,6 +16,7 @@ trait OrganizationPropertyAwareTrait
     public function setOrganization(Organization $organization): self
     {
         $this->organization = $organization;
+
         return $this;
     }
 }

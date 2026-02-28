@@ -8,6 +8,9 @@ use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\EntitySerializerAwareTrait;
 
+/**
+ * @template T of EntityInterface
+ */
 trait FindEntityOperationTrait
 {
     use ClientAwareTrait,
@@ -17,7 +20,7 @@ trait FindEntityOperationTrait
 
     /**
      * @param $entityId
-     * @return EntityInterface|null
+     * @return T|null
      */
     public function find($entityId): ?EntityInterface
     {

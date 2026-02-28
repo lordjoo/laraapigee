@@ -2,9 +2,9 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Contracts\Services\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\DeveloperApp;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
-use Lordjoo\LaraApigee\Contracts\Services\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
@@ -28,6 +28,28 @@ class DeveloperAppService extends BaseService implements DeveloperAppServiceInte
     {
         parent::__construct($httpClient, $config);
         $this->developerId = $developerId;
+    }
+
+    public function approve(string $appId): bool
+    {
+        $url = $this->getEntityPath($appId)->appendQuery('action=approve')->getURL();
+        $response = $this->httpClient->post($url,[
+            'headers' => [
+                'Content-Type' => 'application/octet-stream',
+            ],
+        ]);
+        return $response->getStatusCode() === 200;
+    }
+
+    public function revoke(string $appId): bool
+    {
+        $url = $this->getEntityPath($appId)->appendQuery('action=revoke')->getURL();
+        $response = $this->httpClient->post($url,[
+            'headers' => [
+                'Content-Type' => 'application/octet-stream',
+            ],
+        ]);
+        return $response->getStatusCode() === 200;
     }
 
     protected function getEntityPath(?string $path = null): URLTemplate

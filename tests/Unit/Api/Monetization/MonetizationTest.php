@@ -2,28 +2,72 @@
 
 use Lordjoo\LaraApigee\Api\Monetization\ApigeeX\Contracts\Services\RatePlanServiceInterface;
 use Lordjoo\LaraApigee\Api\Monetization\Edge\Contracts\Services\ApiPackageServiceInterface;
+use Lordjoo\LaraApigee\Api\Monetization\Edge\Contracts\Services\ApiProductServiceInterface;
+use Lordjoo\LaraApigee\Api\Monetization\Edge\Contracts\Services\BillingAdjustmentServiceInterface;
+use Lordjoo\LaraApigee\Api\Monetization\Edge\Contracts\Services\DeveloperServiceInterface;
+use Lordjoo\LaraApigee\Api\Monetization\Edge\Contracts\Services\RatePlanServiceInterface as EdgeRatePlanServiceInterface;
+use Lordjoo\LaraApigee\Api\Monetization\Edge\Contracts\Services\ReportServiceInterface;
 use Lordjoo\LaraApigee\Api\Monetization\Monetization;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 
 describe('Monetization platform selection', function () {
     it('returns edge API packages service when platform is edge', function () {
-        $config = new class extends ConfigDriver {
-            public function getOrganization(): string { return 'test-org'; }
-            public function getEndpoint(): string { return 'https://example.com/v1'; }
-            public function getUserName(): string { return 'user'; }
-            public function getPassword(): string { return 'pass'; }
-            public function getMonetizationEnabled(): bool { return true; }
-            public function getMonetizationEndpoint(): string { return 'https://example.com/v1/mint'; }
-            public function getKeyFile(): string { return __FILE__; }
-            public function get(string $key): string { return ''; }
-            public function getMonetizationPlatform(): string { return 'edge'; }
+        $config = new class extends ConfigDriver
+        {
+            public function getOrganization(): string
+            {
+                return 'test-org';
+            }
+
+            public function getEndpoint(): string
+            {
+                return 'https://example.com/v1';
+            }
+
+            public function getUserName(): string
+            {
+                return 'user';
+            }
+
+            public function getPassword(): string
+            {
+                return 'pass';
+            }
+
+            public function getMonetizationEnabled(): bool
+            {
+                return true;
+            }
+
+            public function getMonetizationEndpoint(): string
+            {
+                return 'https://example.com/v1/mint';
+            }
+
+            public function getKeyFile(): string
+            {
+                return __FILE__;
+            }
+
+            public function get(string $key): string
+            {
+                return '';
+            }
+
+            public function getMonetizationPlatform(): string
+            {
+                return 'edge';
+            }
         };
 
         $monetization = new Monetization($config);
 
         expect($monetization->apiPackages())->toBeInstanceOf(ApiPackageServiceInterface::class);
-        expect(fn () => $monetization->ratePlans('my-product'))
-            ->toThrow(\BadMethodCallException::class);
+        expect($monetization->apiProducts())->toBeInstanceOf(ApiProductServiceInterface::class);
+        expect($monetization->billingAdjustments())->toBeInstanceOf(BillingAdjustmentServiceInterface::class);
+        expect($monetization->developers())->toBeInstanceOf(DeveloperServiceInterface::class);
+        expect($monetization->ratePlans())->toBeInstanceOf(EdgeRatePlanServiceInterface::class);
+        expect($monetization->reports())->toBeInstanceOf(ReportServiceInterface::class);
     });
 
     it('returns apigee x services when platform is apigee_x', function () {
@@ -33,17 +77,54 @@ describe('Monetization platform selection', function () {
             'private_key' => "-----BEGIN PRIVATE KEY-----\nMIIB...fake...\n-----END PRIVATE KEY-----\n",
         ]));
 
-        $config = new class($keyFile) extends ConfigDriver {
+        $config = new class($keyFile) extends ConfigDriver
+        {
             public function __construct(private string $keyFile) {}
-            public function getOrganization(): string { return 'test-org'; }
-            public function getEndpoint(): string { return 'https://example.com/v1'; }
-            public function getUserName(): string { return 'user'; }
-            public function getPassword(): string { return 'pass'; }
-            public function getMonetizationEnabled(): bool { return true; }
-            public function getMonetizationEndpoint(): string { return 'https://example.com/v1'; }
-            public function getKeyFile(): string { return $this->keyFile; }
-            public function get(string $key): string { return ''; }
-            public function getMonetizationPlatform(): string { return 'apigee_x'; }
+
+            public function getOrganization(): string
+            {
+                return 'test-org';
+            }
+
+            public function getEndpoint(): string
+            {
+                return 'https://example.com/v1';
+            }
+
+            public function getUserName(): string
+            {
+                return 'user';
+            }
+
+            public function getPassword(): string
+            {
+                return 'pass';
+            }
+
+            public function getMonetizationEnabled(): bool
+            {
+                return true;
+            }
+
+            public function getMonetizationEndpoint(): string
+            {
+                return 'https://example.com/v1';
+            }
+
+            public function getKeyFile(): string
+            {
+                return $this->keyFile;
+            }
+
+            public function get(string $key): string
+            {
+                return '';
+            }
+
+            public function getMonetizationPlatform(): string
+            {
+                return 'apigee_x';
+            }
         };
 
         $monetization = new Monetization($config);

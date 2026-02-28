@@ -10,6 +10,9 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\EntitySerializerAwareTrait;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
+/**
+ * @template T of EntityInterface
+ */
 trait CreateEntityOperationTrait
 {
     use ClientAwareTrait,
@@ -18,8 +21,8 @@ trait CreateEntityOperationTrait
         EntityClassAwareTrait;
 
     /**
-     * @param EntityInterface $entity
-     * @return EntityInterface|null
+     * @param T $entity
+     * @return T
      * @throws ExceptionInterface|ApiException
      */
     public function create(EntityInterface $entity): EntityInterface

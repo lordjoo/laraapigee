@@ -2,36 +2,45 @@
 
 namespace Lordjoo\LaraApigee\Api\Monetization;
 
-use Lordjoo\LaraApigee\Api\Monetization\Contracts\Services\ApiPackageServiceInterface;
-use Lordjoo\LaraApigee\Api\Monetization\Services\ApiPackageService;
+use BadMethodCallException;
+use InvalidArgumentException;
+use Lordjoo\LaraApigee\Api\Monetization\ApigeeX\Monetization as ApigeeXMonetization;
+use Lordjoo\LaraApigee\Api\Monetization\Edge\Monetization as EdgeMonetization;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
-use Lordjoo\LaraApigee\HttpClient\Authenticators\BasicAuth;
-use Lordjoo\LaraApigee\HttpClient\HttpClient;
 
+/**
+ * @mixin EdgeMonetization
+ * @mixin ApigeeXMonetization
+ */
 class Monetization
 {
-    protected ConfigDriver $config;
+    public const PLATFORM_EDGE = 'edge';
+    public const PLATFORM_APIGEE_X = 'apigee_x';
 
-    protected HttpClient $httpClient;
+    private EdgeMonetization|ApigeeXMonetization $driver;
 
     public function __construct(ConfigDriver $config)
     {
-        $this->config = $config;
-        $authenticator = new BasicAuth(
-            $this->config->getUsername(),
-            $this->config->getPassword()
-        );
-        $this->httpClient = new HttpClient(
-            $this->config->getMonetizationEndpoint().'/organizations/'.$this->config->getOrganization().'/',
-            $authenticator
-        );
+        $platform = strtolower($config->getMonetizationPlatform());
+
+        $this->driver = match ($platform) {
+            self::PLATFORM_APIGEE_X => new ApigeeXMonetization($config),
+            self::PLATFORM_EDGE, '' => new EdgeMonetization($config),
+            default => throw new InvalidArgumentException("Unsupported monetization platform: {$platform}"),
+        };
     }
 
-
-    public function apiPackages(): ApiPackageServiceInterface
+    public function getDriver(): EdgeMonetization|ApigeeXMonetization
     {
-        return new ApiPackageService($this->httpClient, $this->config);
+        return $this->driver;
     }
 
+    public function __call(string $name, array $arguments)
+    {
+        if (!method_exists($this->driver, $name)) {
+            throw new BadMethodCallException(sprintf('Method %s is not supported by the %s monetization driver.', $name, $this->driver::class));
+        }
 
+        return $this->driver->$name(...$arguments);
+    }
 }

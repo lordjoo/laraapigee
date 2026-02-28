@@ -15,7 +15,7 @@ class ApiPackageDenormalizer extends ObjectDenormalizer
 {
     public function __construct(?ClassMetadataFactoryInterface $classMetadataFactory = null, ?NameConverterInterface $nameConverter = null, ?PropertyAccessorInterface $propertyAccessor = null, ?PropertyTypeExtractorInterface $propertyTypeExtractor = null)
     {
-        $nameConverter = $nameConverter ?? new ApiPackageNameConverter();
+        $nameConverter = $nameConverter ?? new ApiPackageNameConverter;
         parent::__construct($classMetadataFactory, $nameConverter, $propertyAccessor, $propertyTypeExtractor);
     }
 
@@ -39,6 +39,6 @@ class ApiPackageDenormalizer extends ObjectDenormalizer
             return false;
         }
 
-        return ApiPackage::class === $type || $type instanceof ApiPackage;
+        return $type === ApiPackage::class;
     }
 }

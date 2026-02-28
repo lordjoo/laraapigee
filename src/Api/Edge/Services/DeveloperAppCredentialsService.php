@@ -2,12 +2,15 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Contracts\Services\DeveloperAppCredentialsServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\AppCredential;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
-use Lordjoo\LaraApigee\Contracts\Services\DeveloperAppCredentialsServiceInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
+/**
+ * @extends AppCredentialsService<AppCredential>
+ */
 class DeveloperAppCredentialsService extends AppCredentialsService implements DeveloperAppCredentialsServiceInterface
 {
 

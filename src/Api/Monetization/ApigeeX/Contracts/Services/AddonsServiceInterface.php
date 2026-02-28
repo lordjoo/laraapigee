@@ -5,6 +5,9 @@ namespace Lordjoo\LaraApigee\Api\Monetization\ApigeeX\Contracts\Services;
 use Lordjoo\LaraApigee\Api\Monetization\ApigeeX\Entities\AddonsConfig;
 use Lordjoo\LaraApigee\Contracts\Services\EntityServiceInterface;
 
+/**
+ * @extends EntityServiceInterface<AddonsConfig>
+ */
 interface AddonsServiceInterface extends EntityServiceInterface
 {
     public function get(): AddonsConfig;

@@ -5,10 +5,16 @@ namespace Lordjoo\LaraApigee\Api\Monetization\ApigeeX\Contracts\Services;
 use Lordjoo\LaraApigee\Api\Monetization\ApigeeX\Entities\DeveloperSubscription;
 use Lordjoo\LaraApigee\Contracts\Services\EntityServiceInterface;
 
+/**
+ * @extends EntityServiceInterface<DeveloperSubscription>
+ */
 interface DeveloperSubscriptionServiceInterface extends EntityServiceInterface
 {
     /**
-     * @return array{developerSubscriptions: \Illuminate\Support\Collection, nextStartKey: string|null}
+     * @return array{
+     *     developerSubscriptions: \Illuminate\Support\Collection<int, DeveloperSubscription>,
+     *     nextStartKey: string|null
+     * }
      */
     public function list(array $query = []): array;
 

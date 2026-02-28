@@ -52,6 +52,19 @@ class URLTemplate
     }
 
     /**
+     * Append a query string to the URL.
+     *
+     * @param string $query The query string to append
+     * @return self
+     */
+    public function appendQuery(string $query): self
+    {
+        $separator = !str_contains($this->baseURL, '?') ? '?' : '&';
+        $this->baseURL .= $separator . ltrim($query, '?');
+        return $this;
+    }
+
+    /**
      * Return the base URL as a string.
      *
      * @return string

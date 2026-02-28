@@ -2,8 +2,6 @@
 
 namespace Lordjoo\LaraApigee\Api\Monetization\Edge\Entities\Properties;
 
-use Lordjoo\LaraApigee\Api\Monetization\Entities\ApiProduct;
-
 trait ApiProductsPropertyAwareTrait
 {
     protected array $apiProducts = [];
@@ -16,6 +14,7 @@ trait ApiProductsPropertyAwareTrait
     public function setApiProducts(array $apiProducts): self
     {
         $this->apiProducts = $apiProducts;
+
         return $this;
     }
 }

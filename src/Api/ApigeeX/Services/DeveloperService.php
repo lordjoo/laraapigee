@@ -2,12 +2,15 @@
 
 namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
+use Lordjoo\LaraApigee\Api\ApigeeX\Contracts\Services\DeveloperServiceInterface;
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\Developer;
-use Lordjoo\LaraApigee\Contracts\Services\DeveloperServiceInterface;
+use Lordjoo\LaraApigee\Api\ApigeeX\Utility\Serializer\Normalizers\ClearDeveloperPropertiesNormalizer;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations;
+use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializer;
+use Lordjoo\LaraApigee\Utility\Serializer\EntitySerializerInterface;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
 class DeveloperService extends BaseService implements DeveloperServiceInterface
@@ -22,7 +25,7 @@ class DeveloperService extends BaseService implements DeveloperServiceInterface
      *
      * @param string $email
      * @param string $status 'active' or 'inactive'
-     * @return \Lordjoo\LaraApigee\Entities\EntityInterface|null
+     * @return Developer|null
      */
     public function setStatus(string $email, string $status)
     {
@@ -48,5 +51,12 @@ class DeveloperService extends BaseService implements DeveloperServiceInterface
     protected function getEntityClass(): string
     {
         return Developer::class;
+    }
+
+    protected function getSerializer(): EntitySerializerInterface
+    {
+        return new EntitySerializer([
+            new ClearDeveloperPropertiesNormalizer(),
+        ]);
     }
 }

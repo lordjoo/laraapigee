@@ -2,9 +2,9 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Contracts\Services\TargetServerServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\TargetServer;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
-use Lordjoo\LaraApigee\Contracts\Services\TargetServerServiceInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;

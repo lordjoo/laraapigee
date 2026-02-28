@@ -5,6 +5,9 @@ namespace Lordjoo\LaraApigee\Api\Monetization\ApigeeX\Contracts\Services;
 use Lordjoo\LaraApigee\Api\Monetization\ApigeeX\Entities\DeveloperMonetizationConfig;
 use Lordjoo\LaraApigee\Contracts\Services\EntityServiceInterface;
 
+/**
+ * @extends EntityServiceInterface<DeveloperMonetizationConfig>
+ */
 interface DeveloperMonetizationConfigServiceInterface extends EntityServiceInterface
 {
     public function get(): DeveloperMonetizationConfig;

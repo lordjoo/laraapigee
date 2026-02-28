@@ -2,10 +2,10 @@
 
 namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
+use Lordjoo\LaraApigee\Api\ApigeeX\Contracts\Services\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\DeveloperApp;
 use Lordjoo\LaraApigee\Api\ApigeeX\Utility\Serializer\Normalizers\ClearAppPropertiesNormalizer;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
-use Lordjoo\LaraApigee\Contracts\Services\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
@@ -31,6 +31,28 @@ class DeveloperAppService extends BaseService implements DeveloperAppServiceInte
     {
         parent::__construct($httpClient, $config);
         $this->developerId = $developerId;
+    }
+
+    public function approve(string $appId): bool
+    {
+        $url = $this->getEntityPath($appId)->appendQuery('action=approve')->getURL();
+        $response = $this->httpClient->post($url,[
+            'headers' => [
+                'Content-Type' => 'application/octet-stream',
+            ],
+        ]);
+        return $response->getStatusCode() >= 200 && $response->getStatusCode() < 300;
+    }
+
+    public function revoke(string $appId): bool
+    {
+        $url = $this->getEntityPath($appId)->appendQuery('action=revoke')->getURL();
+        $response = $this->httpClient->post($url,[
+            'headers' => [
+                'Content-Type' => 'application/octet-stream',
+            ],
+        ]);
+        return $response->getStatusCode() >= 200 && $response->getStatusCode() < 300;
     }
 
     protected function getEntityPath(?string $path = null): URLTemplate

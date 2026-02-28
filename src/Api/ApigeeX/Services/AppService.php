@@ -2,10 +2,9 @@
 
 namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
+use Lordjoo\LaraApigee\Api\ApigeeX\Contracts\Services\AppServiceInterface;
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\App;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
-use Lordjoo\LaraApigee\Contracts\Services\AppServiceInterface;
-use Lordjoo\LaraApigee\Contracts\Services\DeveloperAppServiceInterface;
 use Lordjoo\LaraApigee\Entities\EntityInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Services\BaseService;
@@ -39,16 +38,25 @@ class AppService extends BaseService implements AppServiceInterface
         return App::class;
     }
 
+    /**
+     * @throws \BadMethodCallException
+     */
     public function create(EntityInterface $entity): EntityInterface
     {
         throw new \BadMethodCallException('This operation is Not supported');
     }
 
+    /**
+     * @throws \BadMethodCallException
+     */
     public function update(string $entityId, EntityInterface $entity): EntityInterface
     {
         throw new \BadMethodCallException('This operation is Not supported');
     }
 
+    /**
+     * @throws \BadMethodCallException
+     */
     public function delete(string $entityId): bool
     {
         throw new \BadMethodCallException('This operation is Not supported');

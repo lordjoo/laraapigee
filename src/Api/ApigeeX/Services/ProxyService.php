@@ -3,6 +3,7 @@
 namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
 use Illuminate\Support\Collection;
+use Lordjoo\LaraApigee\Api\ApigeeX\Contracts\Services\ProxyServiceInterface;
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\Proxy;
 use Lordjoo\LaraApigee\Api\ApigeeX\Entities\ProxyDeployment;
 use Lordjoo\LaraApigee\Services\BaseService;
@@ -11,7 +12,7 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\Operations\LoadEntityOperationTrait;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 
-class ProxyService extends BaseService
+class ProxyService extends BaseService implements ProxyServiceInterface
 {
     use EntityEndpointAwareTrait,
         EntityClassAwareTrait,
@@ -22,6 +23,7 @@ class ProxyService extends BaseService
 
     public function get($query = []): Collection
     {
+        $this->entityClass = Proxy::class;
         $path = (string) $this->getEntityPath();
         $response = $this->getClient()->get($path, [
             'query' => array_merge([

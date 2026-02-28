@@ -5,7 +5,6 @@ namespace Lordjoo\LaraApigee\Api\Edge\Services;
 use Lordjoo\LaraApigee\Api\Edge\Entities\AppCredential;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
 use Lordjoo\LaraApigee\Contracts\Services\AppCredentialsServiceInterface;
-use Lordjoo\LaraApigee\Entities\Structure\AttributesProperty;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
@@ -14,6 +13,10 @@ use Lordjoo\LaraApigee\Services\EntitySerializerAwareTrait;
 use Lordjoo\LaraApigee\Utility\URLTemplate;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
+/**
+ * @template TCredential of AppCredential
+ * @implements AppCredentialsServiceInterface<TCredential>
+ */
 abstract class AppCredentialsService extends BaseService implements AppCredentialsServiceInterface
 {
     use EntityEndpointAwareTrait,
@@ -37,7 +40,7 @@ abstract class AppCredentialsService extends BaseService implements AppCredentia
      *
      * @param string $consumerKey
      * @param string $consumerSecret
-     * @return AppCredential
+     * @return TCredential
      * @throws ExceptionInterface
      */
     public function create(string $consumerKey, string $consumerSecret): AppCredential
@@ -56,7 +59,7 @@ abstract class AppCredentialsService extends BaseService implements AppCredentia
      * Load an app credential
      *
      * @param string $consumerKey
-     * @return AppCredential
+     * @return TCredential
      * @throws ExceptionInterface
      */
     public function load(string $consumerKey): AppCredential
@@ -70,11 +73,8 @@ abstract class AppCredentialsService extends BaseService implements AppCredentia
      * Generate a new app credential
      *
      * @param array $apiProducts
-     * @param AttributesProperty|null $appAttributes
-     * @param string $callbackUrl
-     * @param array $scopes
      * @param string $keyExpiresIn
-     * @return array
+     * @return array<int|string, TCredential>
      * @throws ExceptionInterface
      */
     public function generate(
@@ -104,7 +104,7 @@ abstract class AppCredentialsService extends BaseService implements AppCredentia
      *
      * @param string $consumerKey
      * @param array $apiProducts
-     * @return AppCredential
+     * @return TCredential
      * @throws ExceptionInterface
      */
     public function addProducts(string $consumerKey, array $apiProducts): AppCredential
@@ -124,7 +124,7 @@ abstract class AppCredentialsService extends BaseService implements AppCredentia
      * @param string $consumerKey
      * @param string $apiProduct
      * @param string $status
-     * @return AppCredential
+     * @return TCredential
      * @throws ExceptionInterface
      */
     public function setApiProductStatus(string $consumerKey, string $apiProduct, string $status): AppCredential
@@ -146,7 +146,7 @@ abstract class AppCredentialsService extends BaseService implements AppCredentia
      *
      * @param string $consumerKey
      * @param string $apiProduct
-     * @return AppCredential
+     * @return TCredential
      * @throws ExceptionInterface
      */
     public function deleteApiProduct(string $consumerKey, string $apiProduct): AppCredential
@@ -174,7 +174,7 @@ abstract class AppCredentialsService extends BaseService implements AppCredentia
      * Revoke an app credential
      *
      * @param string $consumerKey
-     * @return AppCredential
+     * @return TCredential
      * @throws ExceptionInterface
      */
     public function approve(string $consumerKey): AppCredential
@@ -195,7 +195,7 @@ abstract class AppCredentialsService extends BaseService implements AppCredentia
      * Reject an app credential
      *
      * @param string $consumerKey
-     * @return AppCredential
+     * @return TCredential
      * @throws ExceptionInterface
      */
     public function revoke(string $consumerKey): AppCredential

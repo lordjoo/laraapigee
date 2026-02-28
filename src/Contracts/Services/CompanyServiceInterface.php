@@ -2,6 +2,13 @@
 
 namespace Lordjoo\LaraApigee\Contracts\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Entities\Company;
+
+/**
+ * @template TCompany of Company
+ * @extends EntityServiceInterface<TCompany>
+ * @extends EntityCrudServiceInterface<TCompany>
+ */
 interface CompanyServiceInterface extends
     EntityServiceInterface,
     EntityCrudServiceInterface

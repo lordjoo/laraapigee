@@ -2,61 +2,86 @@
 
 namespace Lordjoo\LaraApigee\Api\Monetization\Edge\Entities;
 
-use Lordjoo\LaraApigee\Entities\BaseEntity;
-use Lordjoo\LaraApigee\Entities\Properties\DescriptionPropertyAwareTrait;
-use Lordjoo\LaraApigee\Entities\Properties\NamePropertyAwareTrait;
-use Lordjoo\LaraApigee\Entities\Properties\StatusPropertyAwareTrait;
-
-class Organization extends  BaseEntity
+class Organization extends AbstractEdgeMonetizationEntity
 {
-    use NamePropertyAwareTrait,
-        DescriptionPropertyAwareTrait,
-        StatusPropertyAwareTrait;
+    protected ?bool $approvedTrusted = null;
 
-    protected ?bool $approveTrusted = null;
-    protected ?bool $approveUntrusted = null;
+    protected ?bool $approvedUntrusted = null;
+
     protected ?string $billingCycle = null;
+
     protected ?string $country = null;
+
     protected ?string $currency = null;
+
+    protected ?string $description = null;
+
     protected ?bool $hasBillingAdjustment = null;
+
     protected ?bool $hasBroker = null;
+
     protected ?bool $hasSelfBilling = null;
+
     protected ?bool $hasSeparateInvoiceForProduct = null;
+
+    protected ?string $id = null;
+
     protected ?bool $issueNettingStmt = null;
+
+    protected ?string $logoUrl = null;
+
+    protected ?string $name = null;
+
+    protected ?string $netPaymentAdviceNote = null;
+
     protected ?bool $nettingStmtPerCurrency = null;
+
+    protected ?string $regNo = null;
+
     protected ?bool $selfBillingAsExchOrg = null;
-    protected bool $selfBillingForAllDev;
-    protected bool $separateInvoiceForFees;
-    protected string $supportedBillingType;
+
+    protected ?bool $selfBillingForAllDev = null;
+
+    protected ?bool $separateInvoiceForFees = null;
+
+    protected ?string $status = null;
+
+    protected ?string $supportedBillingType = null;
+
     protected ?string $taxEngineExternalId = null;
+
     protected ?string $taxModel = null;
+
+    protected ?string $taxNexus = null;
+
+    protected ?string $taxRegNo = null;
+
+    protected ?string $transactionalRelayURL = null;
+
     protected ?string $timezone = null;
 
-    // Setters and Getters
-
-    public function setApproveTrusted(?bool $approveTrusted): void
+    public function getApprovedTrusted(): ?bool
     {
-        $this->approveTrusted = $approveTrusted;
+        return $this->approvedTrusted;
     }
 
-    public function getApproveTrusted(): ?bool
+    public function setApprovedTrusted(?bool $approvedTrusted): self
     {
-        return $this->approveTrusted;
+        $this->approvedTrusted = $approvedTrusted;
+
+        return $this;
     }
 
-    public function setApproveUntrusted(?bool $approveUntrusted): void
+    public function getApprovedUntrusted(): ?bool
     {
-        $this->approveUntrusted = $approveUntrusted;
+        return $this->approvedUntrusted;
     }
 
-    public function getApproveUntrusted(): ?bool
+    public function setApprovedUntrusted(?bool $approvedUntrusted): self
     {
-        return $this->approveUntrusted;
-    }
+        $this->approvedUntrusted = $approvedUntrusted;
 
-    public function setBillingCycle(?string $billingCycle): void
-    {
-        $this->billingCycle = $billingCycle;
+        return $this;
     }
 
     public function getBillingCycle(): ?string
@@ -64,9 +89,11 @@ class Organization extends  BaseEntity
         return $this->billingCycle;
     }
 
-    public function setCountry(?string $country): void
+    public function setBillingCycle(?string $billingCycle): self
     {
-        $this->country = $country;
+        $this->billingCycle = $billingCycle;
+
+        return $this;
     }
 
     public function getCountry(): ?string
@@ -74,9 +101,11 @@ class Organization extends  BaseEntity
         return $this->country;
     }
 
-    public function setCurrency(?string $currency): void
+    public function setCountry(?string $country): self
     {
-        $this->currency = $currency;
+        $this->country = $country;
+
+        return $this;
     }
 
     public function getCurrency(): ?string
@@ -84,9 +113,23 @@ class Organization extends  BaseEntity
         return $this->currency;
     }
 
-    public function setHasBillingAdjustment(?bool $hasBillingAdjustment): void
+    public function setCurrency(?string $currency): self
     {
-        $this->hasBillingAdjustment = $hasBillingAdjustment;
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     public function getHasBillingAdjustment(): ?bool
@@ -94,9 +137,11 @@ class Organization extends  BaseEntity
         return $this->hasBillingAdjustment;
     }
 
-    public function setHasBroker(?bool $hasBroker): void
+    public function setHasBillingAdjustment(?bool $hasBillingAdjustment): self
     {
-        $this->hasBroker = $hasBroker;
+        $this->hasBillingAdjustment = $hasBillingAdjustment;
+
+        return $this;
     }
 
     public function getHasBroker(): ?bool
@@ -104,9 +149,11 @@ class Organization extends  BaseEntity
         return $this->hasBroker;
     }
 
-    public function setHasSelfBilling(?bool $hasSelfBilling): void
+    public function setHasBroker(?bool $hasBroker): self
     {
-        $this->hasSelfBilling = $hasSelfBilling;
+        $this->hasBroker = $hasBroker;
+
+        return $this;
     }
 
     public function getHasSelfBilling(): ?bool
@@ -114,9 +161,11 @@ class Organization extends  BaseEntity
         return $this->hasSelfBilling;
     }
 
-    public function setHasSeparateInvoiceForProduct(?bool $hasSeparateInvoiceForProduct): void
+    public function setHasSelfBilling(?bool $hasSelfBilling): self
     {
-        $this->hasSeparateInvoiceForProduct = $hasSeparateInvoiceForProduct;
+        $this->hasSelfBilling = $hasSelfBilling;
+
+        return $this;
     }
 
     public function getHasSeparateInvoiceForProduct(): ?bool
@@ -124,9 +173,23 @@ class Organization extends  BaseEntity
         return $this->hasSeparateInvoiceForProduct;
     }
 
-    public function setIssueNettingStmt(?bool $issueNettingStmt): void
+    public function setHasSeparateInvoiceForProduct(?bool $hasSeparateInvoiceForProduct): self
     {
-        $this->issueNettingStmt = $issueNettingStmt;
+        $this->hasSeparateInvoiceForProduct = $hasSeparateInvoiceForProduct;
+
+        return $this;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    public function setId(?string $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getIssueNettingStmt(): ?bool
@@ -134,9 +197,47 @@ class Organization extends  BaseEntity
         return $this->issueNettingStmt;
     }
 
-    public function setNettingStmtPerCurrency(?bool $nettingStmtPerCurrency): void
+    public function setIssueNettingStmt(?bool $issueNettingStmt): self
     {
-        $this->nettingStmtPerCurrency = $nettingStmtPerCurrency;
+        $this->issueNettingStmt = $issueNettingStmt;
+
+        return $this;
+    }
+
+    public function getLogoUrl(): ?string
+    {
+        return $this->logoUrl;
+    }
+
+    public function setLogoUrl(?string $logoUrl): self
+    {
+        $this->logoUrl = $logoUrl;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getNetPaymentAdviceNote(): ?string
+    {
+        return $this->netPaymentAdviceNote;
+    }
+
+    public function setNetPaymentAdviceNote(?string $netPaymentAdviceNote): self
+    {
+        $this->netPaymentAdviceNote = $netPaymentAdviceNote;
+
+        return $this;
     }
 
     public function getNettingStmtPerCurrency(): ?bool
@@ -144,9 +245,23 @@ class Organization extends  BaseEntity
         return $this->nettingStmtPerCurrency;
     }
 
-    public function setSelfBillingAsExchOrg(?bool $selfBillingAsExchOrg): void
+    public function setNettingStmtPerCurrency(?bool $nettingStmtPerCurrency): self
     {
-        $this->selfBillingAsExchOrg = $selfBillingAsExchOrg;
+        $this->nettingStmtPerCurrency = $nettingStmtPerCurrency;
+
+        return $this;
+    }
+
+    public function getRegNo(): ?string
+    {
+        return $this->regNo;
+    }
+
+    public function setRegNo(?string $regNo): self
+    {
+        $this->regNo = $regNo;
+
+        return $this;
     }
 
     public function getSelfBillingAsExchOrg(): ?bool
@@ -154,39 +269,59 @@ class Organization extends  BaseEntity
         return $this->selfBillingAsExchOrg;
     }
 
-    public function setSelfBillingForAllDev(bool $selfBillingForAllDev): void
+    public function setSelfBillingAsExchOrg(?bool $selfBillingAsExchOrg): self
     {
-        $this->selfBillingForAllDev = $selfBillingForAllDev;
+        $this->selfBillingAsExchOrg = $selfBillingAsExchOrg;
+
+        return $this;
     }
 
-    public function getSelfBillingForAllDev(): bool
+    public function getSelfBillingForAllDev(): ?bool
     {
         return $this->selfBillingForAllDev;
     }
 
-    public function setSeparateInvoiceForFees(bool $separateInvoiceForFees): void
+    public function setSelfBillingForAllDev(?bool $selfBillingForAllDev): self
     {
-        $this->separateInvoiceForFees = $separateInvoiceForFees;
+        $this->selfBillingForAllDev = $selfBillingForAllDev;
+
+        return $this;
     }
 
-    public function getSeparateInvoiceForFees(): bool
+    public function getSeparateInvoiceForFees(): ?bool
     {
         return $this->separateInvoiceForFees;
     }
 
-    public function setSupportedBillingType(string $supportedBillingType): void
+    public function setSeparateInvoiceForFees(?bool $separateInvoiceForFees): self
     {
-        $this->supportedBillingType = $supportedBillingType;
+        $this->separateInvoiceForFees = $separateInvoiceForFees;
+
+        return $this;
     }
 
-    public function getSupportedBillingType(): string
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSupportedBillingType(): ?string
     {
         return $this->supportedBillingType;
     }
 
-    public function setTaxEngineExternalId(?string $taxEngineExternalId): void
+    public function setSupportedBillingType(?string $supportedBillingType): self
     {
-        $this->taxEngineExternalId = $taxEngineExternalId;
+        $this->supportedBillingType = $supportedBillingType;
+
+        return $this;
     }
 
     public function getTaxEngineExternalId(): ?string
@@ -194,9 +329,11 @@ class Organization extends  BaseEntity
         return $this->taxEngineExternalId;
     }
 
-    public function setTaxModel(?string $taxModel): void
+    public function setTaxEngineExternalId(?string $taxEngineExternalId): self
     {
-        $this->taxModel = $taxModel;
+        $this->taxEngineExternalId = $taxEngineExternalId;
+
+        return $this;
     }
 
     public function getTaxModel(): ?string
@@ -204,9 +341,47 @@ class Organization extends  BaseEntity
         return $this->taxModel;
     }
 
-    public function setTimezone(?string $timezone): void
+    public function setTaxModel(?string $taxModel): self
     {
-        $this->timezone = $timezone;
+        $this->taxModel = $taxModel;
+
+        return $this;
+    }
+
+    public function getTaxNexus(): ?string
+    {
+        return $this->taxNexus;
+    }
+
+    public function setTaxNexus(?string $taxNexus): self
+    {
+        $this->taxNexus = $taxNexus;
+
+        return $this;
+    }
+
+    public function getTaxRegNo(): ?string
+    {
+        return $this->taxRegNo;
+    }
+
+    public function setTaxRegNo(?string $taxRegNo): self
+    {
+        $this->taxRegNo = $taxRegNo;
+
+        return $this;
+    }
+
+    public function getTransactionalRelayURL(): ?string
+    {
+        return $this->transactionalRelayURL;
+    }
+
+    public function setTransactionalRelayURL(?string $transactionalRelayURL): self
+    {
+        $this->transactionalRelayURL = $transactionalRelayURL;
+
+        return $this;
     }
 
     public function getTimezone(): ?string
@@ -214,4 +389,10 @@ class Organization extends  BaseEntity
         return $this->timezone;
     }
 
+    public function setTimezone(?string $timezone): self
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
 }

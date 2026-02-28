@@ -4,8 +4,8 @@ namespace Lordjoo\LaraApigee\Api\ApigeeX\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Lordjoo\LaraApigee\Api\ApigeeX\Contracts\Services\StatsServiceInterface;
 use Lordjoo\LaraApigee\ConfigReaders\ConfigDriver;
-use Lordjoo\LaraApigee\Contracts\Services\StatsServiceInterface;
 use Lordjoo\LaraApigee\HttpClient\HttpClient;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\ClientAwareTrait;
@@ -38,7 +38,7 @@ class StatsService extends BaseService implements StatsServiceInterface
      * @param string|null $filter
      * @return Collection
      */
-    public function traffic(array $dimensions, array $metrics, array $timeRange, string $filter = null,array $options = []): Collection
+    public function traffic(array $dimensions, array $metrics, array $timeRange, ?string $filter = null, array $options = []): Collection
     {
         if (count($timeRange) > 2) {
             throw new \InvalidArgumentException('Time range must be an array of 2 Carbon instances.');

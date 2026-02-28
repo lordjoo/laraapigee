@@ -8,14 +8,25 @@ use Lordjoo\LaraApigee\Services\ClientAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 
+/**
+ * @template T of EntityInterface
+ */
 trait LoadEntityOperationTrait
 {
     use ClientAwareTrait,
         EntityEndpointAwareTrait,
         EntityClassAwareTrait;
 
+    /**
+     * @param array $content
+     * @return Collection<T>
+     */
     protected function serializeList(array $content)
     {
+        if ([] === $content) {
+            return collect();
+        }
+
         if (!is_array(reset($content))) {
             return $content;
         }
@@ -23,7 +34,7 @@ trait LoadEntityOperationTrait
         $content = reset($content);
 
         if ([] === $content) {
-            return [];
+            return collect();
         }
 
         return collect($content)->map(function ($value) {

@@ -11,9 +11,8 @@ class ApiPackageSerializer extends EntitySerializer
     public function __construct(array $normalizers = [])
     {
         $normalizers = array_merge($normalizers, [
-            parent::getEntityTypeSpecificNormalizers(),
-            new ApiPackageDenormalizer(),
-            new ApiPackageNormalizer()
+            new ApiPackageDenormalizer,
+            new ApiPackageNormalizer,
         ]);
         parent::__construct($normalizers);
     }

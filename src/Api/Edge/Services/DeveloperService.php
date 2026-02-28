@@ -2,8 +2,8 @@
 
 namespace Lordjoo\LaraApigee\Api\Edge\Services;
 
+use Lordjoo\LaraApigee\Api\Edge\Contracts\Services\DeveloperServiceInterface;
 use Lordjoo\LaraApigee\Api\Edge\Entities\Developer;
-use Lordjoo\LaraApigee\Contracts\Services\DeveloperServiceInterface;
 use Lordjoo\LaraApigee\Services\BaseService;
 use Lordjoo\LaraApigee\Services\EntityClassAwareTrait;
 use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
@@ -21,7 +21,7 @@ class DeveloperService extends BaseService implements  DeveloperServiceInterface
      *
      * @param string $email
      * @param string $status 'active' or 'inactive'
-     * @return \Lordjoo\LaraApigee\Entities\EntityInterface|null
+     * @return Developer|null
      */
     public function setStatus(string $email, string $status)
     {

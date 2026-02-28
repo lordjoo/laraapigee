@@ -14,15 +14,21 @@ class ApiPackageNormalizer extends ObjectNormalizer
 {
     public function __construct(?ClassMetadataFactoryInterface $classMetadataFactory = null, ?NameConverterInterface $nameConverter = null, ?PropertyAccessorInterface $propertyAccessor = null, ?PropertyTypeExtractorInterface $propertyTypeExtractor = null)
     {
-        $nameConverter = $nameConverter ?? new ApiPackageNameConverter();
+        $nameConverter = $nameConverter ?? new ApiPackageNameConverter;
         parent::__construct($classMetadataFactory, $nameConverter, $propertyAccessor, $propertyTypeExtractor);
     }
 
     public function normalize($object, $format = null, array $context = []): float|int|bool|\ArrayObject|array|string|null
     {
         $normalized = parent::normalize($object, $format, $context);
+        if (! isset($normalized['product']) || ! is_iterable($normalized['product'])) {
+            return $normalized;
+        }
+
         foreach ($normalized['product'] as $id => $data) {
-            $normalized['product'][$id] = ['id' => $data['id'] ?? $data['name']];
+            if (is_array($data)) {
+                $normalized['product'][$id] = ['id' => $data['id'] ?? $data['name'] ?? null];
+            }
         }
 
         return $normalized;

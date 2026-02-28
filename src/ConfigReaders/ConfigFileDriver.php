@@ -34,6 +34,11 @@ class ConfigFileDriver extends ConfigDriver
         return config('laraapigee.monetization.endpoint', '');
     }
 
+    public function getMonetizationPlatform(): string
+    {
+        return config('laraapigee.monetization.platform', 'edge');
+    }
+
     public function getKeyFile(): string
     {
         return config('laraapigee.key_file', '');

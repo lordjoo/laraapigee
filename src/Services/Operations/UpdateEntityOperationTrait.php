@@ -10,6 +10,9 @@ use Lordjoo\LaraApigee\Services\EntityEndpointAwareTrait;
 use Lordjoo\LaraApigee\Services\EntitySerializerAwareTrait;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
+/**
+ * @template T of EntityInterface
+ */
 trait UpdateEntityOperationTrait
 {
     use ClientAwareTrait,
@@ -19,8 +22,8 @@ trait UpdateEntityOperationTrait
 
     /**
      * @param string $entityId
-     * @param EntityInterface $entity
-     * @return EntityInterface|null
+     * @param T $entity
+     * @return T
      * @throws ExceptionInterface|ApiException
      */
     public function update(string $entityId, EntityInterface $entity): EntityInterface
