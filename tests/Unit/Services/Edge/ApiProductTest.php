@@ -1,13 +1,33 @@
 <?php
 
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Collection;
 use Lordjoo\LaraApigee\Api\Edge\Entities\ApiProduct;
+use Lordjoo\LaraApigee\Api\Edge\Services\ApiProductService;
+use Lordjoo\LaraApigee\Tests\Support\FakeConfigDriver;
+use Lordjoo\LaraApigee\Tests\Support\FakeHttpClient;
 
 it('can fetch products', function () {
-    $service = \Lordjoo\LaraApigee\Facades\LaraApigee::edge()->apiProducts();
+    $service = new ApiProductService(new FakeHttpClient([
+        new Response(200, [], json_encode([
+            'apiProduct' => [
+                [
+                    'name' => 'product-1',
+                    'description' => 'Description 1',
+                    'displayName' => 'Display Name 1',
+                    'environments' => ['prod', 'test'],
+                    'proxies' => ['proxy-1'],
+                ],
+            ],
+        ], JSON_THROW_ON_ERROR)),
+    ]), new FakeConfigDriver);
+
     $products = $service->get();
-    // should be an array of ApiProduct objects
-    $this->assertIsArray($products);
-    $this->assertContainsOnlyInstancesOf(ApiProduct::class, $products);
+
+    expect($products)->toBeInstanceOf(Collection::class)
+        ->and($products)->toHaveCount(1)
+        ->and($products->first())->toBeInstanceOf(ApiProduct::class)
+        ->and($products->first()->getName())->toBe('product-1');
 });
 
 it('can create product', function () {
@@ -22,21 +42,31 @@ it('can create product', function () {
         'quota' => '100',
     ]);
 
-    $this->assertEquals('Product 1', $product->getName());
-    $this->assertEquals('Description 1', $product->getDescription());
-    $this->assertEquals('Display Name 1', $product->getDisplayName());
-    $this->assertEquals(['prod', 'test'], $product->getEnvironments());
-    $this->assertEquals(['proxy1', 'proxy2'], $product->getProxies());
-    $this->assertEquals('2', $product->getQuotaInterval());
+    expect($product->getName())->toBe('Product 1')
+        ->and($product->getDescription())->toBe('Description 1')
+        ->and($product->getDisplayName())->toBe('Display Name 1')
+        ->and($product->getEnvironments())->toBe(['prod', 'test'])
+        ->and($product->getProxies())->toBe(['proxy1', 'proxy2'])
+        ->and($product->getQuotaInterval())->toBe('2');
 });
 
 it('can update product', function () {
-    $service = \Lordjoo\LaraApigee\Facades\LaraApigee::edge()->apiProducts();
-    /** @var ApiProduct[] $products */
+    $service = new ApiProductService(new FakeHttpClient([
+        new Response(200, [], json_encode([
+            'apiProduct' => [
+                [
+                    'name' => 'product-1',
+                    'description' => 'Description 1',
+                    'displayName' => 'Display Name 1',
+                ],
+            ],
+        ], JSON_THROW_ON_ERROR)),
+    ]), new FakeConfigDriver);
+
+    /** @var Collection<int, ApiProduct> $products */
     $products = $service->get();
-    $this->assertIsArray($products);
-    $this->assertContainsOnlyInstancesOf(ApiProduct::class, $products);
-    $product = $products[0];
+    $product = $products->first();
     $product->setDescription('New Description');
-    $this->assertEquals('New Description', $product->getDescription());
+
+    expect($product->getDescription())->toBe('New Description');
 });

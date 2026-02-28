@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Lordjoo\LaraApigee\Utility\Serializer\Normalizers;
 
 use ArrayObject;
@@ -18,31 +17,26 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ObjectNormalizer implements NormalizerInterface, SerializerAwareInterface
 {
-
     protected ?BaseObjectNormalizer $objectNormalizer = null;
-
 
     protected ?SerializerInterface $serializer = null;
 
     /**
      * The API client only communicates in JSON with Apigee Edge.
-     *
-     * @var string
      */
     private string $format = JsonEncoder::FORMAT;
 
     /**
      * EntityNormalizer constructor.
-     *
-     * @param ClassMetadataFactoryInterface|null $classMetadataFactory
-     * @param NameConverterInterface|null $nameConverter
-     * @param PropertyAccessorInterface|null $propertyAccessor
-     * @param PropertyTypeExtractorInterface|null $propertyTypeExtractor
      */
-    public function __construct(ClassMetadataFactoryInterface $classMetadataFactory = null, NameConverterInterface $nameConverter = null, PropertyAccessorInterface $propertyAccessor = null, PropertyTypeExtractorInterface $propertyTypeExtractor = null)
-    {
-        if (null === $propertyTypeExtractor) {
-            $reflectionExtractor = new ReflectionExtractor();
+    public function __construct(
+        ?ClassMetadataFactoryInterface $classMetadataFactory = null,
+        ?NameConverterInterface $nameConverter = null,
+        ?PropertyAccessorInterface $propertyAccessor = null,
+        ?PropertyTypeExtractorInterface $propertyTypeExtractor = null
+    ) {
+        if ($propertyTypeExtractor === null) {
+            $reflectionExtractor = new ReflectionExtractor;
 
             $propertyTypeExtractor = new PropertyInfoExtractor(
                 [
@@ -71,7 +65,7 @@ class ObjectNormalizer implements NormalizerInterface, SerializerAwareInterface
         // Exclude null values from the output, even if PATCH is not supported on Apigee Edge
         // sending a smaller portion of data in POST/PUT is always a good practice.
         $asArray = array_filter($asArray, function ($value) {
-            return !is_null($value);
+            return ! is_null($value);
         });
         ksort($asArray);
 
@@ -80,9 +74,9 @@ class ObjectNormalizer implements NormalizerInterface, SerializerAwareInterface
 
     /**
      * {@inheritdoc}
-     * @param mixed $data
-     * @param null $format
-     * @param array $context
+     *
+     * @param  mixed  $data
+     * @param  null  $format
      */
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
